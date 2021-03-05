@@ -392,6 +392,7 @@ MonoBehaviour:
   speed: 8
   direction: {x: 0, y: 0, z: 0}
   smoothTime: 0.1
+  swingDegree: 15
 --- !u!143 &954750409
 CharacterController:
   m_ObjectHideFlags: 0

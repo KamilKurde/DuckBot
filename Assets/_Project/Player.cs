@@ -14,29 +14,41 @@ public class Player : MonoBehaviour
     // Wygładzanie obrotu postaci
     public float smoothTime = 0.1f;
     private float turnSmoothVelocity;
+    public float swingDegree;
+    private float swingSmoothVelocity;
+    private float rotationAngle = 0;
     void Start()
     {
-        if (speed == 0)
-            throw new Exception("Prędkosć to zero deklu");
+        if (speed == 0f)
+            throw new Exception("Speed is 0");
+        if (swingDegree == 0f)
+            throw new Exception("Swing is 0");
     }
 
     void Update()
     {
+        // Wstępne obliczenia dla obrotu
+        var targetSwingAngle = 0f;
+        var targetRotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        
         if (direction.magnitude >= 0.1f)
         {
-            // Obracanie postaci w kierunku ruchu
-            float targetRotationAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            float rotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotationAngle, ref turnSmoothVelocity, smoothTime);
-            transform.rotation = Quaternion.Euler(0f, rotationAngle, 0f);
-            
+            // Jeżeli w ruchu to przeliczamy obrót postaci, oraz ustawiamy docelowe wychylenie
+            rotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotationAngle, ref turnSmoothVelocity, smoothTime);
+            targetSwingAngle = swingDegree;
             // Stosujemy kierunek i mnożymy go przez prędkość oraz czas który upłnynął od poprzedniej klatki
             controller.Move(direction * (speed * Time.deltaTime)); 
         }
+        
+        // Obracanie postaci w kierunku ruchu oraz wychylenie
+        var swingAngle =
+            Mathf.SmoothDampAngle(transform.eulerAngles.x, targetSwingAngle, ref swingSmoothVelocity, smoothTime);
+        transform.rotation = Quaternion.Euler(swingAngle, rotationAngle, 0f);
     }
 
     public void movement(InputAction.CallbackContext context)
     {
-        Vector2 inputMovement = context.ReadValue<Vector2>();
+        var inputMovement = context.ReadValue<Vector2>();
         
         // Aktualizujemy kierunek i normalizujemy go
         direction = new Vector3(inputMovement.x , 0, inputMovement.y).normalized; 
