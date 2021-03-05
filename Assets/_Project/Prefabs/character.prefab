@@ -51,7 +51,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5144208670106148468}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Movement
+        m_MethodName: OnMovementInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -82,10 +82,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 9031368761028275554}
   speed: 8
-  direction: {x: 0, y: 0, z: 0}
-  rotationSmoothingSpeed: 20
-  swingDegree: 15
-  swingSmoothingSpeed: 0.08
+  rotationSpeed: 20
+  swingPower: 0.3
 --- !u!1001 &4731587679760329185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ed788a63953044b409a213cf3695258f, type: 3}
       propertyPath: m_Name
-      value: character (1)
+      value: character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed788a63953044b409a213cf3695258f, type: 3}
