@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Button : MonoBehaviour, Source, Receiver
+public class Button : Element, Source, Receiver
 {
-    [SerializeField] private DataHolder _dataHolder;
-    
     [SerializeField] private int inputChannel;
     [SerializeField] private int outputChannel;
     
@@ -19,20 +17,19 @@ public class Button : MonoBehaviour, Source, Receiver
 
     private void OnTriggerEnter(Collider other)
     {
-        _dataHolder.channels[inputChannel].AddVoltageListeners(this);
-        _dataHolder.channels[outputChannel].AddVoltageSource(this);
+        ChannelManager.GetChannel(inputChannel).AddVoltageListeners(this);
+        ChannelManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        _dataHolder.channels[outputChannel].RemoveVoltageSource(this);
-        _dataHolder.channels[inputChannel].RemoveVoltageListeners(this);
+        ChannelManager.GetChannel(outputChannel).RemoveVoltageSource(this);
+        ChannelManager.GetChannel(inputChannel).RemoveVoltageListeners(this);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _dataHolder.reInitialize();
     }
 
     // Update is called once per frame

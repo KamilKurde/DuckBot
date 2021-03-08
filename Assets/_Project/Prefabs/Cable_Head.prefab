@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7978176993748303609}
   - component: {fileID: 7978176993748303614}
   - component: {fileID: 7978176993748303610}
-  - component: {fileID: 1834649530179562884}
+  - component: {fileID: 9135621734734526289}
   m_Layer: 0
   m_Name: Cable_Head
   m_TagString: Untagged
@@ -160,7 +160,7 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &1834649530179562884
+--- !u!114 &9135621734734526289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,3 +172,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c984b16dd3c32444682ba5246faacfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  channel: 0
+  voltage: 0

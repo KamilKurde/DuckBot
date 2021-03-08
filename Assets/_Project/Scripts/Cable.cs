@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Cable : MonoBehaviour, Receiver
+public class Cable : Element, Receiver
 {
-    [SerializeField] private DataHolder _dataHolder;
-    
     [SerializeField] private int channel;
     [SerializeField] private Material Blue;
     [SerializeField] private Material Black;
@@ -33,10 +31,7 @@ public class Cable : MonoBehaviour, Receiver
 
     void Start()
     {
-        _dataHolder.reInitialize();
-        Debug.Log(_dataHolder.channels[channel] != null);
-        _dataHolder.channels[channel].AddVoltageListeners(this);
-        _dataHolder.channels[channel].UpdateVoltage();
+        ChannelManager.GetChannel(channel).AddVoltageListeners(this);
     }
 
     // Update is called once per frame

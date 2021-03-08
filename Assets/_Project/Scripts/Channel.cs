@@ -17,48 +17,52 @@ public class Channel
 
     public float GetVoltage()
     {
-        return _voltage / 10f;
+        return _voltage;
     }
 
-    private List<Source> _sources = new List<Source>();
-    private List<Receiver> _receivers = new List<Receiver>();
+    private List<Source> sources = new List<Source>();
+    private List<Receiver> receivers = new List<Receiver>();
 
     public void UpdateVoltage()
     {
         _voltage = 0f;
-        foreach (var t in _sources)
+        foreach (var t in sources)
         {
-            _voltage += (int) t.GetOutput();
+            _voltage += t.GetOutput();
         }
 
-        foreach (var t in _receivers)
+        foreach (var t in receivers)
         {
             t.SetInput(_voltage);
         }
-        Debug.Log("Voltage updated: " + _voltage);
+    }
+
+    public bool IsEmpty()
+    {
+        return sources.Count == 0 && receivers.Count == 0;
     }
 
     public void AddVoltageSource(Source source)
     {
-        _sources.Add(source);
+        sources.Add(source);
         UpdateVoltage();
     }
 
     public void RemoveVoltageSource(Source source)
     {
-        _sources.Remove(source);
+        sources.Remove(source);
         UpdateVoltage();
     }
         
     public void AddVoltageListeners(Receiver receiver)
     {
-        _receivers.Add(receiver);
+        receivers.Add(receiver);
         UpdateVoltage();
     }
 
     public void RemoveVoltageListeners(Receiver receiver)
     {
-        _receivers.Remove(receiver);
+        receivers.Remove(receiver);
         UpdateVoltage();
     }
 }
