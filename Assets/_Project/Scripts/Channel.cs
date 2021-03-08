@@ -1,13 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
-public interface Source
+public interface ISource
 { 
     public float GetOutput();
 }
 
-public interface Receiver
+public interface IReceiver
 {
     public void SetInput(float voltage);
 }
@@ -15,13 +13,8 @@ public class Channel
 {
     private float _voltage = 0f;
 
-    public float GetVoltage()
-    {
-        return _voltage;
-    }
-
-    private List<Source> sources = new List<Source>();
-    private List<Receiver> receivers = new List<Receiver>();
+    private List<ISource> sources = new List<ISource>();
+    private List<IReceiver> receivers = new List<IReceiver>();
 
     public void UpdateVoltage()
     {
@@ -42,25 +35,25 @@ public class Channel
         return sources.Count == 0 && receivers.Count == 0;
     }
 
-    public void AddVoltageSource(Source source)
+    public void AddVoltageSource(ISource source)
     {
         sources.Add(source);
         UpdateVoltage();
     }
 
-    public void RemoveVoltageSource(Source source)
+    public void RemoveVoltageSource(ISource source)
     {
         sources.Remove(source);
         UpdateVoltage();
     }
         
-    public void AddVoltageListeners(Receiver receiver)
+    public void AddVoltageListeners(IReceiver receiver)
     {
         receivers.Add(receiver);
         UpdateVoltage();
     }
 
-    public void RemoveVoltageListeners(Receiver receiver)
+    public void RemoveVoltageListeners(IReceiver receiver)
     {
         receivers.Remove(receiver);
         UpdateVoltage();

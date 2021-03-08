@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class Button : Element, Source, Receiver
+public class Button : Element, ISource, IReceiver
 {
     [SerializeField] private int inputChannel;
     [SerializeField] private int outputChannel;
@@ -13,23 +9,27 @@ public class Button : Element, Source, Receiver
 
     public float GetOutput() { return _voltage; }
 
-    public void SetInput(float voltage) { _voltage = voltage; }
+    public void SetInput(float voltage)
+    {
+        _voltage = voltage;
+        UpdateColor(new []{1}, _voltage);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        ChannelManager.GetChannel(inputChannel).AddVoltageListeners(this);
         ChannelManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
 
     private void OnTriggerExit(Collider other)
     {
         ChannelManager.GetChannel(outputChannel).RemoveVoltageSource(this);
-        ChannelManager.GetChannel(inputChannel).RemoveVoltageListeners(this);
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
+        LightInit();
+        ChannelManager.GetChannel(inputChannel).AddVoltageListeners(this);
     }
 
     // Update is called once per frame

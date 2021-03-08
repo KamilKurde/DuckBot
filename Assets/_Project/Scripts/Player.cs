@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -9,10 +11,26 @@ public class Player : MonoBehaviour
     [Header("Rotation properties")] 
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
+    [SerializeField] private List<CableEndpoint> _endpoints = new List<CableEndpoint>();
 
     private Vector3 _movementDirection = Vector3.zero;
     // Variable ot keep last direction (for use when player is no longer moving)
     private Vector3 _lastMovementDirection = Vector3.forward;
+
+    // Method to invoke whenever endpoint's state change
+    public void CheckRequirements()
+    {
+        var allRequirementsFulfilled = true;
+        foreach (var endpoint in _endpoints)
+        {
+            if (!endpoint.requirementFullfiled)
+                allRequirementsFulfilled = false;
+        }
+        if (allRequirementsFulfilled)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
+    }
 
     private void Update()
     {
