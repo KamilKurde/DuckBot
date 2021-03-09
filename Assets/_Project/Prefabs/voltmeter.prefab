@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Blue: {fileID: 0}
   Black: {fileID: 0}
-  channel: 0
+  voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
   textMeshPro: {fileID: 4916852059877900085}
+  inputChannel: 0
 --- !u!1 &6191119790505256935
 GameObject:
   m_ObjectHideFlags: 0

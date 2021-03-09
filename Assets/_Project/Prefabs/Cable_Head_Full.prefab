@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7978176993748303615, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
       propertyPath: m_Name
-      value: cylinder
+      value: Cable_Head_Full
       objectReference: {fileID: 0}
     - target: {fileID: 9135621734734526289, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
       propertyPath: channel
@@ -67,5 +67,9 @@ PrefabInstance:
       propertyPath: voltage
       value: 3.3
       objectReference: {fileID: 0}
+    - target: {fileID: 9135621734734526289, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: voltageMaterials
+      value: 
+      objectReference: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}

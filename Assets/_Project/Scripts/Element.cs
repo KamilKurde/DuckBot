@@ -1,10 +1,10 @@
+using UnityAtoms;
 using UnityEngine;
 
 public class Element : MonoBehaviour
 {
     // Get materials from inspector
-    [SerializeField] internal Material Blue;
-    [SerializeField] internal Material Black;
+    [SerializeField] internal MaterialValueList voltageMaterials;
     // Component that's null when object doesn't have Light Component
     internal Light _light = null;
     // Method which updates materials with given indexes and light component (if present)
@@ -12,23 +12,27 @@ public class Element : MonoBehaviour
     {
         var materials = GetComponent<Renderer>().materials;
         Material material = null;
+
         if (voltage == 0)
         {
-            material = Black;
+            material = voltageMaterials[0];
             if (_light != null)
                 _light.enabled = false;
         }
         else if (voltage > 0)
         {
-            material = Blue;
+            material = voltageMaterials[1];
             if (_light != null)
             {
                 _light.color = new Color(0f, 0.66f, 1f);
                 _light.enabled = true;
             }
         }
+
         foreach (var index in indexes)
+        {
             materials[index] = material;
+        }
         GetComponent<Renderer>().materials = materials;
     }
 
