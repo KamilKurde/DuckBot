@@ -2,10 +2,11 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 
-public class Voltmeter : Element, IReceiver
+public class Voltmeter : Element, IListener
 {
-    [SerializeField] private int channel;
     [SerializeField] private TextMeshPro textMeshPro;
+    [Header("Inputs")]
+    [SerializeField] private int inputChannel;
     public void SetInput(float voltage)
     {
         textMeshPro.text = voltage.ToString(CultureInfo.InvariantCulture) + " V";
@@ -13,7 +14,7 @@ public class Voltmeter : Element, IReceiver
     
     void Start()
     {
-        ChannelManager.GetChannel(channel).AddVoltageListeners(this);
+        ChannelManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 
 }

@@ -20,6 +20,7 @@ public static class ChannelManager
         if (_channels.Count == 0)
             return;
         var isSource = element is ISource;
+        var isListener = element is IListener;
         var isReceiver = element is IReceiver;
         var unusedChannelskeys = new List<int>();
         foreach (var key in _channels.Keys)
@@ -28,8 +29,10 @@ public static class ChannelManager
             {
                 if (isSource)
                     _channels[key].RemoveVoltageSource(element as ISource);
+                if (isListener)
+                    _channels[key].RemoveVoltageListener(element as IListener);
                 if (isReceiver)
-                    _channels[key].RemoveVoltageListeners(element as IReceiver);
+                    _channels[key].RemoveVoltageReceiver(element as IReceiver);
                 if(_channels[key].IsEmpty())
                     unusedChannelskeys.Add(key);
             }

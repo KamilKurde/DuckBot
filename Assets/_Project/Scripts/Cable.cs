@@ -1,21 +1,22 @@
 using UnityEngine;
 
-public class Cable : Element, IReceiver
+public class Cable : Element, IListener
 {
     // Channel from which cable takes voltage
-    [SerializeField] private int channel;
-    [SerializeField] private float _voltage = 0f;
+    [SerializeField] private float voltage = 0f;
+    [Header("Inputs")]
+    [SerializeField] private int inputChannel;
     
     // Invoked when voltage on channel changes
     public void SetInput(float voltage)
     {
-        _voltage = voltage;
-        UpdateColor( new[] {0}, _voltage);
+        this.voltage = voltage;
+        UpdateColor( new[] {0}, this.voltage);
     }
 
     private void Start()
     {
         LightInit();
-        ChannelManager.GetChannel(channel).AddVoltageListeners(this);
+        ChannelManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 }

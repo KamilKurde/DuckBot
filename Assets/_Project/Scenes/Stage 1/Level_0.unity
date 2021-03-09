@@ -625,6 +625,10 @@ PrefabInstance:
       propertyPath: channel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1324094774873972610, guid: 9a04e692efad0e644a10c4f259dd9be1, type: 3}
+      propertyPath: inputChannel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5145947754873833219, guid: 9a04e692efad0e644a10c4f259dd9be1, type: 3}
       propertyPath: m_Name
       value: voltmeter (1)
@@ -6609,6 +6613,10 @@ PrefabInstance:
       propertyPath: channel
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 382347013887496640, guid: aeac1763b2879784d87d3e4424f8ff91, type: 3}
+      propertyPath: inputChannel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2877909487366017895, guid: aeac1763b2879784d87d3e4424f8ff91, type: 3}
       propertyPath: channel
       value: 4
@@ -9596,6 +9604,10 @@ PrefabInstance:
       propertyPath: channel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 382347013887496640, guid: aeac1763b2879784d87d3e4424f8ff91, type: 3}
+      propertyPath: inputChannel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2877909487366017895, guid: aeac1763b2879784d87d3e4424f8ff91, type: 3}
       propertyPath: channel
       value: 4
@@ -12303,6 +12315,10 @@ PrefabInstance:
       propertyPath: channel
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1324094774873972610, guid: 9a04e692efad0e644a10c4f259dd9be1, type: 3}
+      propertyPath: inputChannel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5145947754873833219, guid: 9a04e692efad0e644a10c4f259dd9be1, type: 3}
       propertyPath: m_Name
       value: voltmeter
@@ -12440,6 +12456,10 @@ PrefabInstance:
       objectReference: {fileID: 1226073906}
     - target: {fileID: 6040909851867685076, guid: 19873275be80b1b438e019a0a090fbad, type: 3}
       propertyPath: channel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6040909851867685076, guid: 19873275be80b1b438e019a0a090fbad, type: 3}
+      propertyPath: inputChannel
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6207937713819335521, guid: 19873275be80b1b438e019a0a090fbad, type: 3}

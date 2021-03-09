@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class Button : Element, ISource, IReceiver
+public class Button : Element, ISource, IListener
 {
+    [Header("Inputs")]
     [SerializeField] private int inputChannel;
+    [Header("Outputs")]
     [SerializeField] private int outputChannel;
     
     private float _voltage = 0f;
@@ -29,12 +31,6 @@ public class Button : Element, ISource, IReceiver
     private void Start()
     {
         LightInit();
-        ChannelManager.GetChannel(inputChannel).AddVoltageListeners(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ChannelManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 }

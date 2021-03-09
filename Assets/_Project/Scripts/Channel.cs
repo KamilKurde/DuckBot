@@ -1,61 +1,94 @@
 using System.Collections.Generic;
 
+// Interface to implement on Elements that add voltage to channel
 public interface ISource
 { 
     public float GetOutput();
 }
 
-public interface IReceiver
+// Interface to implement on Elements that listens to voltage (that needs information about all voltage in current channel without changing it, eg. Voltmeters and Cables)
+public interface IListener
 {
     public void SetInput(float voltage);
 }
+
+// Interface to implement on Elements that takes voltage (eg. Receiving antennas) in equal proportions (if channel have 12 V total, and 2 Receivers, each of them get 6V)
+public interface IReceiver : IListener
+{
+}
+
 public class Channel
 {
     private float _voltage = 0f;
 
-    private List<ISource> sources = new List<ISource>();
-    private List<IReceiver> receivers = new List<IReceiver>();
+    // List to keep track of voltage sources
+    private readonly List<ISource> _sources = new List<ISource>();
+    // List to keep track of voltage listeners
+    private readonly List<IListener> _listeners = new List<IListener>();
+    // List to keep track of voltage receivers
+    private readonly List<IReceiver> _receivers = new List<IReceiver>();
 
     public void UpdateVoltage()
     {
+        // Recalculate voltage
         _voltage = 0f;
-        foreach (var t in sources)
+        foreach (var source in _sources)
         {
-            _voltage += t.GetOutput();
+            _voltage += source.GetOutput();
         }
 
-        foreach (var t in receivers)
+        // Update all listeners
+        foreach (var listener in _listeners)
         {
-            t.SetInput(_voltage);
+            listener.SetInput(_voltage);
+        }
+
+        // Update all Receivers
+        foreach (var receiver in _receivers)
+        {
+            receiver.SetInput(_voltage / _receivers.Count);
         }
     }
 
     public bool IsEmpty()
     {
-        return sources.Count == 0 && receivers.Count == 0;
+        return _sources.Count == 0 && _listeners.Count == 0 && _receivers.Count == 0;
     }
 
     public void AddVoltageSource(ISource source)
     {
-        sources.Add(source);
+        _sources.Add(source);
         UpdateVoltage();
     }
 
     public void RemoveVoltageSource(ISource source)
     {
-        sources.Remove(source);
+        _sources.Remove(source);
         UpdateVoltage();
     }
         
-    public void AddVoltageListeners(IReceiver receiver)
+    public void AddVoltageListener(IListener listener)
     {
-        receivers.Add(receiver);
+        _listeners.Add(listener);
         UpdateVoltage();
     }
 
-    public void RemoveVoltageListeners(IReceiver receiver)
+    public void RemoveVoltageListener(IListener listener)
     {
-        receivers.Remove(receiver);
+        _listeners.Remove(listener);
+        UpdateVoltage();
+    }
+    
+        
+    public void AddVoltageReceiver(IReceiver receiver)
+    {
+        _receivers.Add(receiver);
+        UpdateVoltage();
+    }
+
+    public void RemoveVoltageReceiver(IReceiver receiver)
+    {
+        _receivers.Remove(receiver);
         UpdateVoltage();
     }
 }
