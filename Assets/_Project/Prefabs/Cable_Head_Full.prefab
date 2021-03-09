@@ -7,6 +7,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7978176993748303608, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 2534964839176971238, guid: 2606f53d4f93aad4f8754e8391b0ad4f, type: 3}
+    - target: {fileID: 7978176993748303609, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978176993748303609, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f528037e20eb4b24e862a9e9266c0691, type: 2}
+    - target: {fileID: 7978176993748303609, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d9cdb0520693644b98a31f4a372a2ce, type: 2}
+    - target: {fileID: 7978176993748303609, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: -369670448440565510, guid: 2606f53d4f93aad4f8754e8391b0ad4f, type: 3}
+    - target: {fileID: 7978176993748303610, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8386276
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978176993748303610, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978176993748303610, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978176993748303610, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7978176993748303611, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -58,6 +94,14 @@ PrefabInstance:
     - target: {fileID: 7978176993748303615, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
       propertyPath: m_Name
       value: Cable_Head_Full
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978176993748303615, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978176993748303615, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9135621734734526289, guid: 1d136d8042cd65c4b8add6a3c5e442ea, type: 3}
       propertyPath: channel

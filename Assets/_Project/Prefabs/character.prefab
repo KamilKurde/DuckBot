@@ -44,7 +44,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5144208670106148468}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnInteractionInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 01ea478f-75a4-42bb-aad5-316c728e9039
     m_ActionName: PlayerControls/Interaction[/Keyboard/e]
   - m_PersistentCalls:
@@ -63,6 +75,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6d787f6e-ed52-476a-90d5-8f74155fb00f
     m_ActionName: PlayerControls/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 23eb42be-d84a-4a67-b52a-88565d6c9194
+    m_ActionName: PlayerControls/Pick Up[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: PlayerControls
@@ -84,6 +100,7 @@ MonoBehaviour:
   speed: 8
   rotationSpeed: 20
   swingPower: 0.3
+  endpoints: []
 --- !u!1001 &4731587679760329185
 PrefabInstance:
   m_ObjectHideFlags: 0

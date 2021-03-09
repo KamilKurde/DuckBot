@@ -19,12 +19,22 @@ public class Element : MonoBehaviour
             if (_light != null)
                 _light.enabled = false;
         }
-        else if (voltage > 0)
+        if (voltage > 0)
         {
             material = voltageMaterials[1];
             if (_light != null)
             {
                 _light.color = new Color(0f, 0.66f, 1f);
+                _light.enabled = true;
+            }
+        }
+
+        if (voltage > 4)
+        {
+            material = voltageMaterials[2];
+            if (_light != null)
+            {
+                _light.color = new Color(1f, 0f, 0f);
                 _light.enabled = true;
             }
         }

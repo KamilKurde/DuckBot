@@ -11,17 +11,17 @@ public class Player : MonoBehaviour
     [Header("Rotation properties")] 
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
-    [SerializeField] private List<CableEndpoint> _endpoints = new List<CableEndpoint>();
+    [SerializeField] private List<CableEndpoint> endpoints = new List<CableEndpoint>();
+    private IInteractable _interactable;
 
     private Vector3 _movementDirection = Vector3.zero;
     // Variable ot keep last direction (for use when player is no longer moving)
     private Vector3 _lastMovementDirection = Vector3.forward;
-
-    // Method to invoke whenever endpoint's state change
+    
     public void CheckRequirements()
     {
         var allRequirementsFulfilled = true;
-        foreach (var endpoint in _endpoints)
+        foreach (var endpoint in endpoints)
         {
             if (!endpoint.requirementFullfiled)
                 allRequirementsFulfilled = false;
@@ -44,6 +44,11 @@ public class Player : MonoBehaviour
         _movementDirection = new Vector3(inputMovement.x, _movementDirection.y, inputMovement.y);
     }
 
+    public void OnInteractionInput(InputAction.CallbackContext context)
+    {
+        Debug.Log("wywołanie");
+    }
+    
     private void Move()
     {
         // New rotation for the character
