@@ -180,7 +180,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0, g: 0.7385421, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -244,10 +244,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
-  requiredVoltage: 3.3
-  player: {fileID: 0}
   textMeshPro: {fileID: 1854461802100323902}
   requirementFullfiled: 0
+  requiredVoltage: 3.3
   inputChannel: 0
 --- !u!1001 &5337522924531681838
 PrefabInstance:

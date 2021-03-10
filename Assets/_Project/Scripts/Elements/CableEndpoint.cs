@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class CableEndpoint : Element, IReceiver
 {
-    [SerializeField] private float requiredVoltage = 0;
-    [SerializeField] private Player player;
     [SerializeField] private TextMeshPro textMeshPro;
     [HideInInspector] public bool requirementFullfiled = false;
+    [SerializeField] private float requiredVoltage = 0;
     [Header("Inputs")]
     [SerializeField] private int inputChannel;
     public void SetInput(float voltage)
@@ -19,6 +18,7 @@ public class CableEndpoint : Element, IReceiver
             textMeshPro.color = Color.white;
             _light.enabled = true;
             requirementFullfiled = true;
+            GameManager.CheckRequirements();
         }
         else
         {
@@ -26,13 +26,13 @@ public class CableEndpoint : Element, IReceiver
             _light.enabled = false;
             requirementFullfiled = false;
         }
-        player.CheckRequirements();
     }
 
     private void Start()
     {
         LightInit();
         textMeshPro.text = requiredVoltage.ToString(CultureInfo.InvariantCulture);
-        ChannelManager.GetChannel(inputChannel).AddVoltageReceiver(this);
+        GameManager.AddEndpoint(this);
+        GameManager.GetChannel(inputChannel).AddVoltageReceiver(this);
     }
 }

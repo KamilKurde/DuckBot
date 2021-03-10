@@ -54,6 +54,6 @@ public class Element : MonoBehaviour
 
     private void OnDestroy()
     {
-        ChannelManager.RemoveAllReferencesTo(this);
+        GameManager.RemoveAllReferencesTo(this);
     }
 }

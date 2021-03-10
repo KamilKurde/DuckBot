@@ -13,6 +13,6 @@ public class CableHead : Element, ISource
     {
         LightInit();
         UpdateColor(new []{0}, voltage);
-        ChannelManager.GetChannel(channel).AddVoltageSource(this);
+        GameManager.GetChannel(channel).AddVoltageSource(this);
     }
 }

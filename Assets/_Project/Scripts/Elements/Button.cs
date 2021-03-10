@@ -19,18 +19,18 @@ public class Button : Element, ISource, IListener
 
     private void OnTriggerEnter(Collider other)
     {
-        ChannelManager.GetChannel(outputChannel).AddVoltageSource(this);
+        GameManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        ChannelManager.GetChannel(outputChannel).RemoveVoltageSource(this);
+        GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         LightInit();
-        ChannelManager.GetChannel(inputChannel).AddVoltageListener(this);
+        GameManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 }
