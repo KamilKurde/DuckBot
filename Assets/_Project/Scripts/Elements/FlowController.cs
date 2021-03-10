@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowController : Element, IReceiver, ISource, IInteractable, IPlaceable
+public class FlowController : PlaceableElement, IReceiver, ISource, IInteractable
 {
     [SerializeField] private bool firstChannelIsActive = true;
 
@@ -13,7 +14,7 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlace
     [Header("Outputs")]
     [SerializeField] private int outputChannel;
 
-    private bool isVisible;
+    private float lastInteract = 0f;
 
     private float _voltage = 0;
 
@@ -38,62 +39,46 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlace
 
     public void Interact()
     {
+        if (Time.time - lastInteract < 1f)
+        {
+            return;
+        }
+
+        lastInteract = Time.time;
         firstChannelIsActive = !firstChannelIsActive;
         animator.SetTrigger("StateChange");
+        StartCoroutine(ChangeChannels());
+    }
+
+    private IEnumerator ChangeChannels()
+    {
+        yield return new WaitForSeconds(0.5f);
         if (firstChannelIsActive)
         {
-            //animator.Play("State1");
             GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
             GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
         }
         else
         {
-            //animator.Play("State2");
             GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
             GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
         }
         GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 
-    
-
-    public void Hide()
+    protected override void UpdateChannels(List<int> inputChannels, List<int> outputChannels)
     {
-        if (isVisible)
-        {
-            isVisible = false;
-            transform.position -= Vector3.up * 10;
-        }
-    }
-
-    public void Show() {
-        if (!isVisible)
-        {
-            isVisible = true;
-            transform.position += Vector3.up * 10;
-        }
-    }
-
-    public bool IsVisible()
-    {
-        return isVisible;
-    }
-
-    public void Place(Vector3 where, float rotation, List<int> inputChannels, List<int> outputChannels)
-    {
-        transform.position = new Vector3(where.x, transform.rotation.y, where.z);
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, rotation);
-        
-        GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
+        ChangeReceiverChannel(ref inputChannel1, inputChannels[0]);
+        /*GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
         inputChannel1 = inputChannels[0];
-        GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
-        
-        GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
+        GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);*/
+        ChangeReceiverChannel(ref inputChannel2, inputChannels[1]);
+        /*GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
         inputChannel2 = inputChannels[1];
-        GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
-        
-        GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
+        GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);*/
+        ChangeSourceChannel(ref outputChannel, outputChannels[0]);
+        /*GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
         outputChannel = outputChannels[0];
-        GameManager.GetChannel(outputChannel).AddVoltageSource(this);
+        GameManager.GetChannel(outputChannel).AddVoltageSource(this); */
     }
 }

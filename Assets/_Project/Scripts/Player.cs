@@ -45,6 +45,11 @@ public class Player : MonoBehaviour
             return;
         }
 
+        if (_placeTile == null)
+        {
+            return;
+        }
+
         if (GameManager.placeable == null && !_placeTile.HasPlaceable)
         {
             return;
