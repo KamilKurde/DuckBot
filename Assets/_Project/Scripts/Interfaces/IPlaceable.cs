@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPlacable
+public interface IPlaceable
 {
     public void Hide();
     public void Show();

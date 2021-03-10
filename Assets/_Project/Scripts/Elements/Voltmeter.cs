@@ -3,16 +3,16 @@ using System.Globalization;
 using TMPro;
 using UnityEngine;
 
-public class Voltmeter : Element, IListener, IPlacable
+public class Voltmeter : Element, IListener, IPlaceable
 {
-    [SerializeField] private TextMeshPro textMeshPro;
+    [SerializeField] private TextMeshPro voltageText;
     [Header("Inputs")]
     [SerializeField] private int inputChannel;
 
     private bool isVisible = true;
     public void SetInput(float voltage)
     {
-        textMeshPro.text = voltage.ToString(CultureInfo.InvariantCulture) + " V";
+        voltageText.text = voltage.ToString(CultureInfo.InvariantCulture) + " V";
     }
     
     void Start()
@@ -25,15 +25,16 @@ public class Voltmeter : Element, IListener, IPlacable
         if (isVisible)
         {
             isVisible = false;
-            transform.position = new Vector3(transform.position.x, transform.position.y -10f, transform.position.z);
+            transform.position += Vector3.up * -10;
+            //transform.position = new Vector3(transform.position.x, transform.position.y - 10f, transform.position.z);
         }
     }
 
-    public void Show() { 
+    public void Show() {
         if (!isVisible)
         {
-            isVisible = false;
-            transform.position = new Vector3(transform.position.x, transform.position.y +10f, transform.position.z);
+            isVisible = true;
+            transform.position += Vector3.up * 10;
         }
     }
 

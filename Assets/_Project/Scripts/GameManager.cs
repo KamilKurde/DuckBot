@@ -7,7 +7,7 @@ public static class GameManager
     // Dictionary that holds channels
     private static Dictionary<int, Channel> _channels = new Dictionary<int, Channel>();
     private static List<CableEndpoint> _endpoints = new List<CableEndpoint>();
-    public static IPlacable placable;
+    public static IPlaceable placeable;
 
     public static Channel GetChannel(int channelNumber)
     {

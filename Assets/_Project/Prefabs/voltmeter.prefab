@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76bebd04977a2e4fb2dcf0a1278340a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageMaterials: {fileID: 0}
-  textMeshPro: {fileID: 7190640605067414737}
+  voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
+  voltageText: {fileID: 7190640605067414737}
   inputChannel: 0
 --- !u!1 &6072318749009532937
 GameObject:

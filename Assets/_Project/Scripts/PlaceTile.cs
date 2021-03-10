@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,24 +10,21 @@ public class PlaceTile : Element
 
     [SerializeField] private float rotation;
     [SerializeField] private GameObject _gameObject = null;
-    public IPlacable placable = null;
+    public IPlaceable placeable = null;
 
-    public void SetPlacable(IPlacable placable)
+    public bool HasPlaceable => placeable != null;
+    
+    public void SetPlaceable(IPlaceable placeable)
     {
-        this.placable = placable;
-        this.placable.Place(transform.position,rotation, _inputs, _outputs);
-    }
-
-    public bool HasPlacable()
-    {
-        return placable != null;
+        this.placeable = placeable;
+        this.placeable.Place(transform.position,rotation, _inputs, _outputs);
     }
 
     private void Start()
     {
         if (_gameObject != null)
         {
-            placable = _gameObject.GetComponent<IPlacable>();
+            placeable = _gameObject.GetComponent<IPlaceable>();
         }
     }
 }

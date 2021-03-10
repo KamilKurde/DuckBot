@@ -46,6 +46,11 @@ public class Element : MonoBehaviour
         GetComponent<Renderer>().materials = materials;
     }
 
+    internal void UpdateColor(int index, float voltage)
+    {
+        UpdateColor(new []{index}, voltage);
+    }
+
     // Method to invoke when prefab has light component
     internal void LightInit()
     {

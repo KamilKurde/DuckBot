@@ -44,43 +44,43 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (GameManager.placable == null && !_placeTile.HasPlacable())
+        if (GameManager.placeable == null && !_placeTile.HasPlaceable)
         {
             return;
         }
 
-        if (GameManager.placable != null && _placeTile.HasPlacable())
+        if (GameManager.placeable != null && _placeTile.HasPlaceable)
         {
             return;
         }
 
-        if (GameManager.placable == null && _placeTile.HasPlacable())
+        if (GameManager.placeable == null && _placeTile.HasPlaceable)
         {
-            GameManager.placable = _placeTile.placable;
-            _placeTile.placable = null;
-            GameManager.placable.Hide();
+            GameManager.placeable = _placeTile.placeable;
+            _placeTile.placeable = null;
+            GameManager.placeable.Hide();
             return;
         }
 
-        if (GameManager.placable != null && !_placeTile.HasPlacable())
+        if (GameManager.placeable != null && !_placeTile.HasPlaceable)
         {
-            _placeTile.SetPlacable(GameManager.placable);
-            GameManager.placable = null;
+            _placeTile.SetPlaceable(GameManager.placeable);
+            GameManager.placeable = null;
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        var colidedInteractable = other.gameObject.GetComponent<IInteractable>();
-        if (colidedInteractable != null)
+        var collidedInteractable = other.gameObject.GetComponent<IInteractable>();
+        if (collidedInteractable != null)
         {
-            _interactable = colidedInteractable;
+            _interactable = collidedInteractable;
         }
 
-        var colidedTile = other.gameObject.GetComponent<PlaceTile>();
-        if (colidedTile != null)
+        var collidedTile = other.gameObject.GetComponent<PlaceTile>();
+        if (collidedTile != null)
         {
-            _placeTile = colidedTile;
+            _placeTile = collidedTile;
         }
     }
 

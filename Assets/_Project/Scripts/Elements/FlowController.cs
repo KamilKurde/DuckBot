@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlowController : Element, IReceiver, ISource, IInteractable, IPlacable
+public class FlowController : Element, IReceiver, ISource, IInteractable, IPlaceable
 {
     [SerializeField] private bool firstChannelIsActive = true;
 
@@ -20,6 +20,7 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlaca
     public void SetInput(float voltage)
     {
         _voltage = voltage;
+        UpdateColor( 1, voltage);
     }
 
     public float GetOutput()
@@ -37,15 +38,16 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlaca
     public void Interact()
     {
         firstChannelIsActive = !firstChannelIsActive;
+        animator.SetTrigger("StateChange");
         if (firstChannelIsActive)
         {
-            animator.Play("State1");
+            //animator.Play("State1");
             GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
             GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
         }
         else
         {
-            animator.Play("State2");
+            //animator.Play("State2");
             GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
             GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
         }
