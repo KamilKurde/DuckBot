@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private Vector3 _movementDirection = Vector3.zero;
     // Variable ot keep last direction (for use when player is no longer moving)
     private Vector3 _lastMovementDirection = Vector3.forward;
+    private Vector3 playerVelocity;
 
     private void Update()
     {
@@ -113,6 +114,18 @@ public class Player : MonoBehaviour
         else
         {
             newRotation = Quaternion.LookRotation(_lastMovementDirection);
+        }
+
+        if (controller.isGrounded && playerVelocity.y < 0)
+        {
+            playerVelocity.y = 0f;
+        }
+
+        playerVelocity.y = Physics.gravity.y * Time.deltaTime;
+
+        if (!controller.isGrounded)
+        {
+            controller.Move(playerVelocity);
         }
 
         // Apply rotation

@@ -13,13 +13,13 @@ public class Element : MonoBehaviour
         var materials = GetComponent<Renderer>().materials;
         Material material = null;
 
-        if (voltage == 0)
+        if (Mathf.Approximately(voltage, 0f))
         {
             material = voltageMaterials[0];
             if (_light != null)
                 _light.enabled = false;
         }
-        if (voltage > 0)
+        else if (voltage > 0 && voltage < 4)
         {
             material = voltageMaterials[1];
             if (_light != null)
@@ -28,8 +28,7 @@ public class Element : MonoBehaviour
                 _light.enabled = true;
             }
         }
-
-        if (voltage > 4)
+        else if (voltage > 4)
         {
             material = voltageMaterials[2];
             if (_light != null)

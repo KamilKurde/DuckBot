@@ -17,6 +17,14 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlace
 
     private float _voltage = 0;
 
+    
+    // Start is called before the first frame update
+    private void Start()
+    {
+        GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
+        GameManager.GetChannel(outputChannel).AddVoltageSource(this);
+    }
+    
     public void SetInput(float voltage)
     {
         _voltage = voltage;
@@ -26,13 +34,6 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlace
     public float GetOutput()
     {
         return _voltage;
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
-        GameManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
 
     public void Interact()
@@ -61,15 +62,15 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlace
         if (isVisible)
         {
             isVisible = false;
-            transform.position = new Vector3(transform.position.x, transform.position.y -10, transform.position.z);
+            transform.position -= Vector3.up * 10;
         }
     }
 
-    public void Show() { 
+    public void Show() {
         if (!isVisible)
         {
-            isVisible = false;
-            transform.position = new Vector3(transform.position.x, transform.position.y +10, transform.position.z);
+            isVisible = true;
+            transform.position += Vector3.up * 10;
         }
     }
 
@@ -82,12 +83,15 @@ public class FlowController : Element, IReceiver, ISource, IInteractable, IPlace
     {
         transform.position = new Vector3(where.x, transform.rotation.y, where.z);
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, rotation);
+        
         GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
         inputChannel1 = inputChannels[0];
         GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
+        
         GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
         inputChannel2 = inputChannels[1];
         GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
+        
         GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
         outputChannel = outputChannels[0];
         GameManager.GetChannel(outputChannel).AddVoltageSource(this);

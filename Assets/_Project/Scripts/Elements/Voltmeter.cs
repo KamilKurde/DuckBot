@@ -30,7 +30,8 @@ public class Voltmeter : Element, IListener, IPlaceable
         }
     }
 
-    public void Show() {
+    public void Show() 
+    {
         if (!isVisible)
         {
             isVisible = true;
@@ -46,7 +47,7 @@ public class Voltmeter : Element, IListener, IPlaceable
     public void Place(Vector3 where, float rotation, List<int> inputChannels, List<int> outputChannels)
     {
         transform.position = new Vector3(where.x, transform.position.y, where.z);
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, rotation);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotation, transform.rotation.eulerAngles.z);
         GameManager.GetChannel(inputChannel).RemoveVoltageListener(this);
         inputChannel = inputChannels[0];
         GameManager.GetChannel(inputChannel).AddVoltageListener(this);

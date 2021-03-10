@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.SceneManagement;
 
 public static class GameManager
@@ -13,7 +12,9 @@ public static class GameManager
     {
         // If channel doesn't exist, create one
         if (!_channels.ContainsKey(channelNumber))
+        {
             _channels.Add(channelNumber, new Channel());
+        }
         return _channels[channelNumber];
     }
 
@@ -29,14 +30,17 @@ public static class GameManager
             return;
         }
         var allRequirementsFullfiled = true;
-        foreach (var _ in _endpoints.Where(endpoint => !endpoint.requirementFullfiled))
+        foreach (var endpoint in _endpoints)
         {
-            allRequirementsFullfiled = false;
+            if (!endpoint.requirementFullfiled)
+            {
+                allRequirementsFullfiled = false;
+            }
         }
 
         if (allRequirementsFullfiled)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
@@ -44,7 +48,9 @@ public static class GameManager
     public static void RemoveAllReferencesTo(Element element)
     {
         if (_channels.Count == 0)
+        {
             return;
+        }
         var isSource = element is ISource;
         var isListener = element is IListener;
         var isReceiver = element is IReceiver;
