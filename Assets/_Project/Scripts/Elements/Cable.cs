@@ -16,7 +16,6 @@ public class Cable : Element, IListener
 
     private void Start()
     {
-        LightInit();
         GameManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 }

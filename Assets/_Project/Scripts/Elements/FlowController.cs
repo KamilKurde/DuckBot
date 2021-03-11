@@ -39,11 +39,10 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
 
     public void Interact()
     {
-        if (Time.time - lastInteract < 1f)
+        if (Time.time - lastInteract < 0.7f)
         {
             return;
         }
-
         lastInteract = Time.time;
         firstChannelIsActive = !firstChannelIsActive;
         animator.SetTrigger("StateChange");
@@ -69,16 +68,7 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
     protected override void UpdateChannels(List<int> inputChannels, List<int> outputChannels)
     {
         ChangeReceiverChannel(ref inputChannel1, inputChannels[0]);
-        /*GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
-        inputChannel1 = inputChannels[0];
-        GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);*/
         ChangeReceiverChannel(ref inputChannel2, inputChannels[1]);
-        /*GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
-        inputChannel2 = inputChannels[1];
-        GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);*/
         ChangeSourceChannel(ref outputChannel, outputChannels[0]);
-        /*GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
-        outputChannel = outputChannels[0];
-        GameManager.GetChannel(outputChannel).AddVoltageSource(this); */
     }
 }
