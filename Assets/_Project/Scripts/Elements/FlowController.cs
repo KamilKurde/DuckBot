@@ -14,7 +14,7 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
     [Header("Outputs")]
     [SerializeField] private int outputChannel;
 
-    private float lastInteract = 0f;
+    private float _lastInteract = 0f;
 
     private float _voltage = 0;
 
@@ -39,11 +39,11 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
 
     public void Interact()
     {
-        if (Time.time - lastInteract < 0.7f)
+        if (Time.time - _lastInteract < 0.7f)
         {
             return;
         }
-        lastInteract = Time.time;
+        _lastInteract = Time.time;
         firstChannelIsActive = !firstChannelIsActive;
         animator.SetTrigger("StateChange");
         StartCoroutine(ChangeChannels());

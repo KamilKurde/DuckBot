@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,8 +18,19 @@ public class Player : MonoBehaviour
     private Vector3 _lastMovementDirection = Vector3.forward;
     private Vector3 playerVelocity;
 
+    public bool levelFinished = false;
+
+    private void Start()
+    {
+        GameManager.player = this;
+    }
+
     private void Update()
     {
+        if (levelFinished)
+        {
+            return;
+        }
         Move();
     }
 
@@ -31,6 +43,10 @@ public class Player : MonoBehaviour
 
     public void OnInteractionInput(InputAction.CallbackContext context)
     {
+        if (levelFinished)
+        {
+            return;
+        }
         if (!context.started)
         {
             return;
@@ -40,6 +56,11 @@ public class Player : MonoBehaviour
 
     public void OnPlaceInput(InputAction.CallbackContext context)
     {
+        if (levelFinished)
+        {
+            return;
+        }
+        
         if (!context.started)
         {
             return;
@@ -77,6 +98,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (levelFinished)
+        {
+            return;
+        }
         var collidedInteractable = other.gameObject.GetComponent<IInteractable>();
         if (collidedInteractable != null)
         {
@@ -92,6 +117,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (levelFinished)
+        {
+            return;
+        }
         if (other.gameObject.GetComponent<IInteractable>() == _interactable)
         {
             _interactable = null;

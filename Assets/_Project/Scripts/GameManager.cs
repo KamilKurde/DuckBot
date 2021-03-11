@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
 public static class GameManager
 {
@@ -7,6 +7,8 @@ public static class GameManager
     private static Dictionary<int, Channel> _channels = new Dictionary<int, Channel>();
     private static List<CableEndpoint> _endpoints = new List<CableEndpoint>();
     public static IPlaceable placeable;
+    public static UImanager uImanager;
+    public static Player player;
 
     public static Channel GetChannel(int channelNumber)
     {
@@ -40,7 +42,12 @@ public static class GameManager
 
         if (allRequirementsFullfiled)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            player.levelFinished = true;
+            if (uImanager == null)
+            {
+                throw new Exception("There is no next level in build settings");
+            }
+            uImanager.EndLevel();
         }
     }
 
