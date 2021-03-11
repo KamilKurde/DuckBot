@@ -30,6 +30,7 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
     {
         _voltage = voltage;
         UpdateColor( 1, voltage);
+        GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 
     public float GetOutput()
@@ -54,13 +55,13 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
         yield return new WaitForSeconds(0.5f);
         if (firstChannelIsActive)
         {
-            GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
             GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
+            GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
         }
         else
         {
-            GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
             GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
+            GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
         }
         GameManager.GetChannel(outputChannel).UpdateVoltage();
     }

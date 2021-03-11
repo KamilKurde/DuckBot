@@ -10,10 +10,61 @@ public class UImanager : MonoBehaviour
     [Range(0.01f, 5f)]public float opacityChangeTime;
     private float _opacityChangeStep;
 
+    [SerializeField] public CanvasGroup pauseGroup;
+    [SerializeField] private Text levelText;
+    [SerializeField] private Text interactText;
+    [SerializeField] private Text pickUpText;
+    [Header("Texts")]
+    [SerializeField] private string pickUp;
+    [SerializeField] private string place;
+    [SerializeField] private string eqFull;
+
     private void Start()
     {
         GameManager.uImanager = this;
         _opacityChangeStep = opacityChangeTime / 50f;
+        interactText.enabled = false;
+        pickUpText.enabled = false;
+        var scene = SceneManager.GetActiveScene();
+        levelText.text = "Stage " + scene.path[29] + ": " + scene.name.Replace('_', ' ');
+    }
+
+    private void Update()
+    {
+        if (GameManager.player.HasInteractable())
+        {
+            interactText.enabled = true;
+        }
+        else
+        {
+            interactText.enabled = false;
+        }
+
+        if (GameManager.player == null)
+        {
+            return;
+        }
+
+        if (GameManager.player.state == EqState.NoTile)
+        {
+            pickUpText.enabled = false;
+            return;
+        }
+
+        pickUpText.enabled = true;
+
+        switch (GameManager.player.state)
+        {
+            case EqState.CanPlace:
+                pickUpText.text = place;
+                break;
+            case EqState.CanTake:
+                pickUpText.text = pickUp;
+                break;
+            case EqState.CantPlace:
+                pickUpText.text = eqFull;
+                break;
+        }
     }
 
     private void FixedUpdate()

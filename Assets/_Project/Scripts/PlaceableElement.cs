@@ -26,30 +26,6 @@ public abstract class PlaceableElement : Element, IPlaceable
         return _isVisible;
     }
 
-    internal void ChangeLinstenerChannel(ref int from, int to)
-    {
-        if (!(this is IListener)) return;
-        GameManager.GetChannel(from).RemoveVoltageListener(this as IListener);
-        GameManager.GetChannel(to).AddVoltageListener(this as IListener);
-        from = to;
-    }
-
-    internal void ChangeReceiverChannel(ref int from, int to)
-    {
-        if (!(this is IReceiver)) return;
-        GameManager.GetChannel(from).RemoveVoltageReceiver(this as IReceiver);
-        GameManager.GetChannel(to).AddVoltageReceiver(this as IReceiver);
-        from = to;
-    }
-
-    internal void ChangeSourceChannel(ref int from, int to)
-    {
-        if (!(this is ISource)) return;
-        GameManager.GetChannel(from).RemoveVoltageSource(this as ISource);
-        GameManager.GetChannel(to).AddVoltageSource(this as ISource);
-        from = to;
-    }
-
     protected abstract void UpdateChannels(List<int> inputChannels, List<int> outputChannels);
 
     public void Place(Vector3 where, float rotation, List<int> inputChannels, List<int> outputChannels)

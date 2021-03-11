@@ -1,6 +1,13 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+public enum EqState
+{
+    CanPlace,
+    CanTake,
+    CantPlace,
+    NoTile
+}
 
 public class Player : MonoBehaviour
 {
@@ -10,13 +17,16 @@ public class Player : MonoBehaviour
     [Header("Rotation properties")] 
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
-    private IInteractable _interactable;
-    private PlaceTile _placeTile;
+    public EqState state = EqState.NoTile;
+    private IInteractable _interactable = null;
+    private PlaceTile placeTile = null;
 
     private Vector3 _movementDirection = Vector3.zero;
     // Variable ot keep last direction (for use when player is no longer moving)
     private Vector3 _lastMovementDirection = Vector3.forward;
     private Vector3 playerVelocity;
+
+    private bool isPaused = false;
 
     public bool levelFinished = false;
 
@@ -54,6 +64,34 @@ public class Player : MonoBehaviour
         _interactable?.Interact();
     }
 
+    private void UpdateEqState()
+    {
+
+        if (placeTile == null)
+        {
+            state = EqState.NoTile;
+            return;
+        }
+        
+        if (GameManager.placeable != null && !placeTile.HasPlaceable)
+        {
+            state = EqState.CanPlace;
+            return;
+        }
+
+        if (GameManager.placeable == null && placeTile.HasPlaceable)
+        {
+            state = EqState.CanTake;
+            return;
+        }
+
+        if (GameManager.placeable != null && placeTile.HasPlaceable)
+        {
+            state = EqState.CantPlace;
+            return;
+        }
+    }
+
     public void OnPlaceInput(InputAction.CallbackContext context)
     {
         if (levelFinished)
@@ -66,34 +104,49 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (_placeTile == null)
+        if (placeTile == null)
         {
             return;
         }
 
-        if (GameManager.placeable == null && !_placeTile.HasPlaceable)
+        if (GameManager.placeable == null && !placeTile.HasPlaceable)
         {
             return;
         }
 
-        if (GameManager.placeable != null && _placeTile.HasPlaceable)
+        if (GameManager.placeable != null && placeTile.HasPlaceable)
         {
             return;
         }
 
-        if (GameManager.placeable == null && _placeTile.HasPlaceable)
+        if (GameManager.placeable == null && placeTile.HasPlaceable)
         {
-            GameManager.placeable = _placeTile.placeable;
-            _placeTile.placeable = null;
+            GameManager.placeable = placeTile.placeable;
+            placeTile.placeable = null;
             GameManager.placeable.Hide();
+            UpdateEqState();
             return;
         }
 
-        if (GameManager.placeable != null && !_placeTile.HasPlaceable)
+        if (GameManager.placeable != null && !placeTile.HasPlaceable)
         {
-            _placeTile.SetPlaceable(GameManager.placeable);
+            placeTile.SetPlaceable(GameManager.placeable);
             GameManager.placeable = null;
+            UpdateEqState();
         }
+    }
+
+    public void OnPauseEnter(InputAction.CallbackContext context)
+    {
+        if (!context.started)
+        {
+            return;
+        }
+
+        isPaused = !isPaused;
+        GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
+        GameManager.uImanager.pauseGroup.interactable = isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -111,8 +164,9 @@ public class Player : MonoBehaviour
         var collidedTile = other.gameObject.GetComponent<PlaceTile>();
         if (collidedTile != null)
         {
-            _placeTile = collidedTile;
+            placeTile = collidedTile;
         }
+        UpdateEqState();
     }
 
     private void OnTriggerExit(Collider other)
@@ -126,10 +180,11 @@ public class Player : MonoBehaviour
             _interactable = null;
         }
 
-        if (other.gameObject.GetComponent<PlaceTile>() == _placeTile)
+        if (other.gameObject.GetComponent<PlaceTile>() == placeTile)
         {
-            _placeTile = null;
+            placeTile = null;
         }
+        UpdateEqState();
     }
 
     private void Move()
@@ -164,5 +219,15 @@ public class Player : MonoBehaviour
 
         // Apply rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    public bool HasInteractable()
+    {
+        return _interactable != null;
+    }
+
+    public bool HasPlacetile()
+    {
+        return placeTile != null;
     }
 }

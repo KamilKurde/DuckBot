@@ -211,6 +211,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 23eb42be-d84a-4a67-b52a-88565d6c9194
     m_ActionName: PlayerControls/Pick Up[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5144208670106148468}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPauseEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3b5b6879-8801-45a2-9ca3-32e06d368a33
+    m_ActionName: PlayerControls/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: keyboard
   m_DefaultActionMap: PlayerControls
@@ -232,6 +248,8 @@ MonoBehaviour:
   speed: 8
   rotationSpeed: 20
   swingPower: 0.3
+  state: 3
+  levelFinished: 0
 --- !u!1001 &4731587679760329185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -297,7 +315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ed788a63953044b409a213cf3695258f, type: 3}
       propertyPath: m_Name
-      value: character
+      value: Character
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed788a63953044b409a213cf3695258f, type: 3}

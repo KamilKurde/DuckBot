@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Button : PlaceableElement, ISource, IListener
+public class Button : PlaceableElement, ISource, IReceiver
 {
     [Header("Inputs")]
     [SerializeField] private int inputChannel;
@@ -32,12 +32,12 @@ public class Button : PlaceableElement, ISource, IListener
     private void Start()
     {
         LightInit();
-        GameManager.GetChannel(inputChannel).AddVoltageListener(this);
+        GameManager.GetChannel(inputChannel).AddVoltageReceiver(this);
     }
 
     protected override void UpdateChannels(List<int> inputChannels, List<int> outputChannels)
     {
-        ChangeLinstenerChannel(ref inputChannel, inputChannels[0]);
+        ChangeReceiverChannel(ref inputChannel, inputChannels[0]);
         ChangeSourceChannel(ref outputChannel, outputChannels[0]);
     }
 }
