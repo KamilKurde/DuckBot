@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public enum EqState
 {
@@ -12,6 +15,7 @@ public enum EqState
 public class Player : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
+    [SerializeField] private Animator animator;
     [SerializeField, Range(0.1f, 10f)] private float speed;
     
     [Header("Rotation properties")] 
@@ -33,6 +37,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         GameManager.player = this;
+        controller.Move(Vector3.up * 8f);
     }
 
     private void Update()
@@ -208,6 +213,7 @@ public class Player : MonoBehaviour
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
+            animator.enabled = false;
         }
 
         playerVelocity.y = Physics.gravity.y * Time.deltaTime;
