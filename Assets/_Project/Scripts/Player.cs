@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -38,6 +39,10 @@ public class Player : MonoBehaviour
     {
         GameManager.player = this;
         controller.Move(Vector3.up * 8f);
+        if (SceneManager.GetActiveScene().buildIndex > GameSave.currentLevelId)
+        {
+            GameSave.currentLevelId = SceneManager.GetActiveScene().buildIndex;
+        }
     }
 
     private void Update()
@@ -141,17 +146,22 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetPauseState(bool state)
+    {
+        isPaused = state;
+        GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
+        GameManager.uImanager.pauseGroup.interactable = isPaused;
+        Time.timeScale = isPaused ? 0f : 1f;
+    }
+
     public void OnPauseEnter(InputAction.CallbackContext context)
     {
         if (!context.started)
         {
             return;
         }
-
         isPaused = !isPaused;
-        GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
-        GameManager.uImanager.pauseGroup.interactable = isPaused;
-        Time.timeScale = isPaused ? 0f : 1f;
+        SetPauseState(isPaused);
     }
 
     private void OnTriggerEnter(Collider other)

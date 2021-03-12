@@ -1,16 +1,14 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UImanager : MonoBehaviour
+public class UImanager : UI
 {
-    public bool dimmingActive = false;
-    [SerializeField] private Image fadeImage;
-    [Range(0.01f, 5f)]public float opacityChangeTime;
-    private float _opacityChangeStep;
 
     [SerializeField] public CanvasGroup pauseGroup;
+    [SerializeField] private Image eqState;
+    [SerializeField] private Sprite emptyEqTexture;
+    [SerializeField] private Sprite fullEqTexture;
     [SerializeField] private Text levelText;
     [SerializeField] private Text interactText;
     [SerializeField] private Text pickUpText;
@@ -22,11 +20,10 @@ public class UImanager : MonoBehaviour
     private void Start()
     {
         GameManager.uImanager = this;
-        _opacityChangeStep = opacityChangeTime / 50f;
         interactText.enabled = false;
         pickUpText.enabled = false;
         var scene = SceneManager.GetActiveScene();
-        levelText.text = "Stage " + scene.path[29] + ": " + scene.name.Replace('_', ' ');
+        levelText.text = "Stage " + scene.path[29] + ": " + scene.name;
     }
 
     private void Update()
@@ -57,9 +54,11 @@ public class UImanager : MonoBehaviour
         {
             case EqState.CanPlace:
                 pickUpText.text = place;
+                eqState.sprite = fullEqTexture;
                 break;
             case EqState.CanTake:
                 pickUpText.text = pickUp;
+                eqState.sprite = emptyEqTexture;
                 break;
             case EqState.CantPlace:
                 pickUpText.text = eqFull;
@@ -67,38 +66,16 @@ public class UImanager : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-        var currentOpacity = fadeImage.color.a;
-        var targetOpacity = dimmingActive ? 1f : 0f;
-        if (currentOpacity < targetOpacity)
-        {
-            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + _opacityChangeStep);
-            if (fadeImage.color.a > targetOpacity)
-            {
-                fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, targetOpacity);
-            }
-        }
-        else if (currentOpacity > targetOpacity)
-        {
-            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a - _opacityChangeStep);
-            if (fadeImage.color.a < targetOpacity)
-            {
-                fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, targetOpacity);
-            }
-        }
-    }
-
-    public static IEnumerator LoadNextScene(float opacityChangeTime)
-    {
-        yield return new WaitForSeconds(opacityChangeTime);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
     public void EndLevel()
     {
+        LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void LoadMenu()
+    {
+        GameManager.player.SetPauseState(false);
         dimmingActive = true;
-        StartCoroutine(LoadNextScene(opacityChangeTime));
+        LoadScene(0);
     }
 
     private void OnDestroy()

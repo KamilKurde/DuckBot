@@ -11,7 +11,7 @@ public class Voltmeter : PlaceableElement, IListener
 
     public void SetInput(float voltage)
     {
-        voltageText.text = voltage.ToString(CultureInfo.InvariantCulture) + " V";
+        voltageText.text = voltage.ToString(CultureInfo.InvariantCulture) + " U";
     }
     
     private void Start()
