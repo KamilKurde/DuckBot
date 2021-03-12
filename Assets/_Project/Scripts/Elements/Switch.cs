@@ -36,6 +36,7 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     {
         _voltage = voltage;
         UpdateColor(new []{1}, _voltage);
+        GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 
     // Start is called before the first frame update

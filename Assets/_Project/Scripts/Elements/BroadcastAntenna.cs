@@ -31,6 +31,7 @@ public class BroadcastAntenna : Element, IReceiver, ISource, IInteractable
     {
         _voltage = voltage;
         UpdateColor(3, voltage);
+        GameManager.GetChannel(-currentChannel).UpdateVoltage();
     }
 
     public float GetOutput()
