@@ -8,7 +8,7 @@ public abstract class Element : MonoBehaviour
     // Component that's null when object doesn't have Light Component
     internal Light _light = null;
     // Method which updates materials with given indexes and light component (if present)
-    internal void UpdateColor(int[] indexes, float voltage, MaterialValueList materialsList)
+    private void UpdateColor(int[] indexes, float voltage, MaterialValueList materialsList)
     {
         var materials = GetComponent<Renderer>().materials;
         Material material = null;

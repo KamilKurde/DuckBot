@@ -28,14 +28,7 @@ public class UImanager : UI
 
     private void Update()
     {
-        if (GameManager.player.HasInteractable())
-        {
-            interactText.enabled = true;
-        }
-        else
-        {
-            interactText.enabled = false;
-        }
+        interactText.enabled = GameManager.player.HasInteractable();
 
         if (GameManager.player == null)
         {

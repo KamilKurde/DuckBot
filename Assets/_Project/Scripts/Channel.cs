@@ -55,6 +55,24 @@ public class Channel
         return _sources.Count == 0 && _listeners.Count == 0 && _receivers.Count == 0;
     }
 
+    public void RemoveReferencesTo(Element element)
+    {
+        if (element is IListener listener)
+        {
+            RemoveVoltageListener(listener);
+        }
+
+        if (element is IReceiver receiver)
+        {
+            RemoveVoltageReceiver(receiver);
+        }
+
+        if (element is ISource source)
+        {
+            RemoveVoltageSource(source);
+        }
+    }
+
     public void AddVoltageSource(ISource source)
     {
         _sources.Add(source);

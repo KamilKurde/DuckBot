@@ -3,14 +3,19 @@ using UnityEngine;
 
 public abstract class PlaceableElement : Element, IPlaceable
 {
+    [SerializeField] private Animator sizeAnimator;
     private bool _isVisible = true;
+
+    private void changeState()
+    {
+        sizeAnimator.SetTrigger("ChangeState");
+    }
 
     public void Hide()
     {
         if (!_isVisible) return;
         _isVisible = false;
-        transform.position += Vector3.up * -10;
-        // Disconnects element from channels
+        changeState();
         UpdateChannels(new List<int> {0,0,0}, new List<int> {0,0,0});
     }
 
@@ -18,7 +23,7 @@ public abstract class PlaceableElement : Element, IPlaceable
     {
         if (_isVisible) return;
         _isVisible = true;
-        transform.position += Vector3.up * 10;
+        changeState();
     }
 
     public bool IsVisible()

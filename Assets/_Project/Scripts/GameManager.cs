@@ -58,31 +58,23 @@ public static class GameManager
         {
             return;
         }
-        var isSource = element is ISource;
-        var isListener = element is IListener;
-        var isReceiver = element is IReceiver;
         var isEndpoint = element is CableEndpoint;
         if (isEndpoint)
         {
             _endpoints.Remove(element as CableEndpoint);
         }
-        var unusedChannelskeys = new List<int>();
+        var unusedChannelsKeys = new List<int>();
         foreach (var key in _channels.Keys)
         {
             lock (_channels[key])
             {
-                if (isSource)
-                    _channels[key].RemoveVoltageSource(element as ISource);
-                if (isListener)
-                    _channels[key].RemoveVoltageListener(element as IListener);
-                if (isReceiver)
-                    _channels[key].RemoveVoltageReceiver(element as IReceiver);
+                _channels[key].RemoveReferencesTo(element);
                 if (_channels[key].IsEmpty())
-                    unusedChannelskeys.Add(key);
+                    unusedChannelsKeys.Add(key);
             }
         }
 
-        foreach (var key in unusedChannelskeys)
+        foreach (var key in unusedChannelsKeys)
         {
             _channels.Remove(key);
         }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -47,12 +46,9 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
         _lastInteract = Time.time;
         firstChannelIsActive = !firstChannelIsActive;
         animator.SetTrigger("StateChange");
-        StartCoroutine(ChangeChannels());
     }
-
-    private IEnumerator ChangeChannels()
+    public void ChangeChannels()
     {
-        yield return new WaitForSeconds(0.5f);
         if (firstChannelIsActive)
         {
             GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
