@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
         isPaused = state;
         GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
         GameManager.uImanager.pauseGroup.interactable = isPaused;
+        GameManager.uImanager.pauseGroup.blocksRaycasts = isPaused;
         Time.timeScale = isPaused ? 0f : 1f;
     }
 
