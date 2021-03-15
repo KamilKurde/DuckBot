@@ -117,7 +117,7 @@ public abstract class Element : MonoBehaviour
         from = to;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         GameManager.RemoveAllReferencesTo(this);
     }

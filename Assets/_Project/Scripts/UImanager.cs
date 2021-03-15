@@ -28,6 +28,7 @@ public class UImanager : UI
 
     private void Update()
     {
+        HandleOpacityChange(Time.deltaTime);
         interactText.enabled = GameManager.player.HasInteractable();
 
         if (GameManager.player == null)

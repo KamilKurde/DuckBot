@@ -17,8 +17,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private CharacterController controller;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField, Range(0.1f, 10f)] private float speed;
-    
+
     [Header("Rotation properties")] 
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
@@ -39,9 +40,9 @@ public class Player : MonoBehaviour
     {
         GameManager.player = this;
         controller.Move(Vector3.up * 8f);
-        if (SceneManager.GetActiveScene().buildIndex > GameSave.currentLevelId)
+        if (SceneManager.GetActiveScene().buildIndex > GameSave.CurrentLevelId)
         {
-            GameSave.currentLevelId = SceneManager.GetActiveScene().buildIndex;
+            GameSave.CurrentLevelId = SceneManager.GetActiveScene().buildIndex;
         }
     }
 
@@ -215,10 +216,15 @@ public class Player : MonoBehaviour
             newRotation = Quaternion.LookRotation(_movementDirection + new Vector3(0f, -swingPower, 0f));
             controller.Move(_movementDirection * (speed * Time.deltaTime));
             _lastMovementDirection = _movementDirection;
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
         else
         {
             newRotation = Quaternion.LookRotation(_lastMovementDirection);
+            audioSource.Stop();
         }
 
         if (controller.isGrounded && playerVelocity.y < 0)
@@ -236,15 +242,11 @@ public class Player : MonoBehaviour
 
         // Apply rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+
     }
 
     public bool HasInteractable()
     {
         return _interactable != null;
-    }
-
-    public bool HasPlacetile()
-    {
-        return placeTile != null;
     }
 }

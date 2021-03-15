@@ -62,7 +62,8 @@ public static class GameManager
             _endpoints.Remove(element as CableEndpoint);
         }
         var unusedChannelsKeys = new List<int>();
-        foreach (var key in _channels.Keys)
+        var channelsKeys = _channels.Keys;
+        foreach (var key in channelsKeys)
         {
             lock (_channels[key])
             {
