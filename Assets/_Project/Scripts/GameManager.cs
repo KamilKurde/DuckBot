@@ -40,15 +40,13 @@ public static class GameManager
             }
         }
 
-        if (allRequirementsFullfiled)
+        if (!allRequirementsFullfiled) return;
+        player.levelFinished = true;
+        if (uImanager == null)
         {
-            player.levelFinished = true;
-            if (uImanager == null)
-            {
-                throw new Exception("There is no next level in build settings");
-            }
-            uImanager.EndLevel();
+            return;
         }
+        uImanager.EndLevel();
     }
 
     // Removing all references to Object (eg. when object is picked up)

@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: f863a3f777c26d04c9d26d1544d49d3b
+guid: efcbb1db3e0b99a4f837219510705502
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

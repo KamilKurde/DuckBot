@@ -16,6 +16,7 @@ public class Button : PlaceableElement, ISource, IReceiver
     {
         _voltage = voltage;
         UpdateColor(new []{1}, _voltage);
+        GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 
     private void OnTriggerEnter(Collider other)

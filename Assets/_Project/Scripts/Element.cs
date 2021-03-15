@@ -10,6 +10,10 @@ public abstract class Element : MonoBehaviour
     // Method which updates materials with given indexes and light component (if present)
     private void UpdateColor(int[] indexes, float voltage, MaterialValueList materialsList)
     {
+        if (this == null)
+        {
+            return;
+        }
         var materials = GetComponent<Renderer>().materials;
         Material material = null;
 

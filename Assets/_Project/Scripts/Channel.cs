@@ -59,18 +59,19 @@ public class Channel
     {
         if (element is IListener listener)
         {
-            RemoveVoltageListener(listener);
+            _listeners.Remove(listener);
         }
 
         if (element is IReceiver receiver)
         {
-            RemoveVoltageReceiver(receiver);
+            _receivers.Remove(receiver);
         }
 
         if (element is ISource source)
         {
-            RemoveVoltageSource(source);
+            _sources.Remove(source);
         }
+        UpdateVoltage();
     }
 
     public void AddVoltageSource(ISource source)

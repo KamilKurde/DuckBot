@@ -35,23 +35,20 @@ public class UImanager : UI
             return;
         }
 
-        if (GameManager.player.state == EqState.NoTile)
-        {
-            pickUpText.enabled = false;
-            return;
-        }
-
         pickUpText.enabled = true;
 
         switch (GameManager.player.state)
         {
-            case EqState.CanPlace:
-                pickUpText.text = place;
-                eqState.sprite = fullEqTexture;
+            case EqState.NoTile:
+                pickUpText.enabled = false;
                 break;
             case EqState.CanTake:
                 pickUpText.text = pickUp;
                 eqState.sprite = emptyEqTexture;
+                break;
+            case EqState.CanPlace:
+                pickUpText.text = place;
+                eqState.sprite = fullEqTexture;
                 break;
             case EqState.CantPlace:
                 pickUpText.text = eqFull;
@@ -62,6 +59,13 @@ public class UImanager : UI
     public void EndLevel()
     {
         LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Restart()
+    {
+        GameManager.player.SetPauseState(false);
+        dimmingActive = true;
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu()

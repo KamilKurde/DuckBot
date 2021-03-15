@@ -28,4 +28,9 @@ public class Menu : UI
         selectLevelGroup.alpha = isVisible ? 0f : 1f;
         selectLevelGroup.interactable = !isVisible;
     }
+
+    public void OnResetButtonClicked()
+    {
+        GameSave.currentLevelId = 1;
+    }
 }
