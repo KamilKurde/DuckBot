@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public abstract class PlaceableElement : Element, IPlaceable
 {
     [SerializeField] private Animator sizeAnimator;

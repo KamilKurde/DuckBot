@@ -4,6 +4,7 @@ public class Menu : UI
 {
     [SerializeField] private CanvasGroup selectLevelGroup;
     [SerializeField] private GameObject buttonPrefab;
+    private GameObject musicManager;
 
     private void Awake()
     {
@@ -24,10 +25,13 @@ public class Menu : UI
         var isVisible = selectLevelGroup.interactable;
         selectLevelGroup.alpha = isVisible ? 0f : 1f;
         selectLevelGroup.interactable = !isVisible;
+        selectLevelGroup.blocksRaycasts = !isVisible;
     }
 
     public void OnResetButtonClicked()
     {
+        musicManager = GameObject.Find("MusicManager");
+        musicManager.SetActive(false);
         GameSave.CurrentLevelId = 1;
         dimmingActive = true;
         LoadScene(0);

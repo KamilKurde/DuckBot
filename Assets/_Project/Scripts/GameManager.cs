@@ -1,5 +1,13 @@
-using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Audio;
+
+public enum AudioGroup
+{
+    Master,
+    Sound,
+    Music
+}
 
 public static class GameManager
 {
@@ -9,6 +17,37 @@ public static class GameManager
     public static IPlaceable placeable;
     public static UImanager uImanager;
     public static Player player;
+    public static AudioMixer audioMixer;
+
+    private static float LinearToDecibel(float linear)
+    {
+        var value = linear / 100;
+        if (Mathf.Approximately(value, 0f))
+        {
+            return -80f;
+        }
+        return Mathf.Log10(value) * 20;
+    }
+
+    public static void SetVolume(AudioGroup audioGroup, float volume)
+    {
+        Debug.Log("zmiana głośności");
+        var groupName = "";
+        switch (audioGroup)
+        {
+            case AudioGroup.Master:
+                groupName = "Master";
+                break;
+            case AudioGroup.Sound:
+                groupName = "Sound";
+                break;
+            case AudioGroup.Music:
+                groupName = "Music";
+                break;
+        }
+
+        audioMixer.SetFloat(groupName, LinearToDecibel(volume));
+    }
 
     public static Channel GetChannel(int channelNumber)
     {

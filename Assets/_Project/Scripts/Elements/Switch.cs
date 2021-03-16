@@ -9,6 +9,7 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     [SerializeField] private int outputChannel = 0;
     // Start is called before the first frame update
     private bool isActive = false;
+    private AudioSource switch_sound;
     private Material lightMaterial;
     
     private float _voltage = 0f;
@@ -42,6 +43,7 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     // Start is called before the first frame update
     private void Start()
     {
+        switch_sound = GetComponent<AudioSource>();
         lightMaterial = GetComponent<Renderer>().materials[2];
         SetLight(false);
         GameManager.GetChannel(inputChannel).AddVoltageListener(this);
@@ -60,11 +62,13 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
         {
             GameManager.GetChannel(outputChannel).AddVoltageSource(this);
             ChangeListenerToReceiver(inputChannel);
+            switch_sound.Play();
         }
         else
         {
             GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
             ChangeReceiverToListner(inputChannel);
+            switch_sound.Play();
         }
         SetLight(isActive);
     }

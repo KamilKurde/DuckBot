@@ -13,6 +13,8 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
     [Header("Outputs")]
     [SerializeField] private int outputChannel;
 
+    private AudioSource flow_sound;
+
     private float _lastInteract = 0f;
 
     private float _voltage = 0;
@@ -21,6 +23,7 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
     // Start is called before the first frame update
     private void Start()
     {
+        flow_sound = GetComponent<AudioSource>();
         GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
         GameManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
@@ -46,20 +49,20 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
         _lastInteract = Time.time;
         firstChannelIsActive = !firstChannelIsActive;
         animator.SetTrigger("StateChange");
+        flow_sound.Play();
     }
     public void ChangeChannels()
     {
+        GameManager.RemoveAllReferencesTo(this);
         if (firstChannelIsActive)
         {
-            GameManager.GetChannel(inputChannel2).RemoveVoltageReceiver(this);
             GameManager.GetChannel(inputChannel1).AddVoltageReceiver(this);
         }
         else
         {
-            GameManager.GetChannel(inputChannel1).RemoveVoltageReceiver(this);
             GameManager.GetChannel(inputChannel2).AddVoltageReceiver(this);
         }
-        GameManager.GetChannel(outputChannel).UpdateVoltage();
+        GameManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
 
     protected override void UpdateChannels(List<int> inputChannels, List<int> outputChannels)

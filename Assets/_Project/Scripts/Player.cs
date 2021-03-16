@@ -15,15 +15,22 @@ public enum EqState
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private CharacterController controller;
-    [SerializeField] private Animator animator;
-    [SerializeField] private AudioSource audioSource;
+    
     [SerializeField, Range(0.1f, 10f)] private float speed;
+    
+    [SerializeField] private CharacterController controller;
+    
+    [SerializeField] private Animator animator;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    private bool _audioIsActive = false;
+    [Range(0.01f, 5f)]public float volumeChangeTime;
 
     [Header("Rotation properties")] 
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
-    public EqState state = EqState.NoTile;
+    [HideInInspector] public EqState state = EqState.NoTile;
     private IInteractable _interactable = null;
     private PlaceTile placeTile = null;
 
@@ -34,7 +41,7 @@ public class Player : MonoBehaviour
 
     private bool isPaused = false;
 
-    public bool levelFinished = false;
+    [HideInInspector] public bool levelFinished = false;
 
     private void Start()
     {
@@ -44,12 +51,16 @@ public class Player : MonoBehaviour
         {
             GameSave.CurrentLevelId = SceneManager.GetActiveScene().buildIndex;
         }
+
+        audioSource.volume = 0f;
     }
 
     private void Update()
     {
+        HandleVolumeChange(Time.deltaTime);
         if (levelFinished)
         {
+            _audioIsActive = false;
             return;
         }
         Move();
@@ -153,6 +164,7 @@ public class Player : MonoBehaviour
         GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
         GameManager.uImanager.pauseGroup.interactable = isPaused;
         GameManager.uImanager.pauseGroup.blocksRaycasts = isPaused;
+        audioSource.volume = state ? 0f : 1f;
         Time.timeScale = isPaused ? 0f : 1f;
     }
 
@@ -204,6 +216,29 @@ public class Player : MonoBehaviour
         UpdateEqState();
     }
 
+    private void HandleVolumeChange(float time)
+    {
+        var volumeChangeStep = 1f / volumeChangeTime * time;
+        var currentVolume = audioSource.volume;
+        var targetVolume = _audioIsActive ? 1f : 0f;
+        if (currentVolume < targetVolume)
+        {
+            audioSource.volume += volumeChangeStep;
+            if (audioSource.volume > targetVolume)
+            {
+                audioSource.volume = targetVolume;
+            }
+        }
+        else if (currentVolume > targetVolume)
+        {
+            audioSource.volume -= volumeChangeStep;
+            if (audioSource.volume < targetVolume)
+            {
+                audioSource.volume += volumeChangeStep;
+            }
+        }
+    }
+
     private void Move()
     {
         // New rotation for the character
@@ -213,18 +248,15 @@ public class Player : MonoBehaviour
         if(_movementDirection != Vector3.zero)
         {
             // Change rotation according to character movement direction + swing
-            newRotation = Quaternion.LookRotation(_movementDirection + new Vector3(0f, -swingPower, 0f));
+            newRotation = Quaternion.LookRotation(_movementDirection + Vector3.up * -swingPower);
             controller.Move(_movementDirection * (speed * Time.deltaTime));
             _lastMovementDirection = _movementDirection;
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
+            _audioIsActive = true;
         }
         else
         {
             newRotation = Quaternion.LookRotation(_lastMovementDirection);
-            audioSource.Stop();
+            _audioIsActive = false;
         }
 
         if (controller.isGrounded && playerVelocity.y < 0)

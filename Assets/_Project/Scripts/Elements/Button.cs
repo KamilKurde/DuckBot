@@ -7,7 +7,8 @@ public class Button : PlaceableElement, ISource, IReceiver
     [SerializeField] private int inputChannel;
     [Header("Outputs")]
     [SerializeField] private int outputChannel;
-    
+    private AudioSource button_sound;
+
     private float _voltage = 0f;
 
     public float GetOutput() { return _voltage; }
@@ -21,12 +22,15 @@ public class Button : PlaceableElement, ISource, IReceiver
 
     private void OnTriggerEnter(Collider other)
     {
+        button_sound = GetComponent<AudioSource>();
+        button_sound.Play();
         GameManager.GetChannel(outputChannel).AddVoltageSource(this);
     }
 
     private void OnTriggerExit(Collider other)
     {
         GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
+        button_sound.Play();
     }
 
     // Start is called before the first frame update

@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class LevelSelectionButton : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textMeshPro;
@@ -11,18 +12,15 @@ public class LevelSelectionButton : MonoBehaviour
     
     private static string NameFromIndex(int buildIndex)
     {
-        string path = SceneUtility.GetScenePathByBuildIndex(buildIndex);
-        int slash = path.LastIndexOf('/');
-        string name = path.Substring(slash + 1);
-        int dot = name.LastIndexOf('.');
+        var path = SceneUtility.GetScenePathByBuildIndex(buildIndex);
+        var slash = path.LastIndexOf('/');
+        var name = path.Substring(slash + 1);
+        var dot = name.LastIndexOf('.');
         return name.Substring(0, dot);
     }
     
     void Start()
     {
-        /*var scene = SceneUtility.GetScenePathByBuildIndex(levelNumber);
-        Debug.Log(levelNumber);
-        var sceneName = scene.name.Replace('_', ' ');*/
         textMeshPro.text = NameFromIndex(levelNumber);
     }
 

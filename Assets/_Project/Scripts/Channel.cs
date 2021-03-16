@@ -59,17 +59,26 @@ public class Channel
     {
         if (element is IListener listener)
         {
-            _listeners.Remove(listener);
+            while (_listeners.Contains(listener))
+            {
+                _listeners.Remove(listener);
+            }
         }
 
         if (element is IReceiver receiver)
         {
-            _receivers.Remove(receiver);
+            while (_receivers.Contains(receiver))
+            {
+                _receivers.Remove(receiver);
+            }
         }
 
         if (element is ISource source)
         {
-            _sources.Remove(source);
+            while (_sources.Contains(source))
+            {
+                _sources.Remove(source);
+            }
         }
         UpdateVoltage();
     }
@@ -82,7 +91,10 @@ public class Channel
 
     public void RemoveVoltageSource(ISource source)
     {
-        _sources.Remove(source);
+        while (_sources.Contains(source))
+        {
+            _sources.Remove(source);
+        }
         UpdateVoltage();
     }
         
@@ -94,7 +106,10 @@ public class Channel
 
     public void RemoveVoltageListener(IListener listener)
     {
-        _listeners.Remove(listener);
+        while (_listeners.Contains(listener))
+        {
+            _listeners.Remove(listener);
+        }
         UpdateVoltage();
     }
     
@@ -107,7 +122,10 @@ public class Channel
 
     public void RemoveVoltageReceiver(IReceiver receiver)
     {
-        _receivers.Remove(receiver);
+        while (_receivers.Contains(receiver))
+        {
+            _receivers.Remove(receiver);
+        }
         UpdateVoltage();
     }
 }

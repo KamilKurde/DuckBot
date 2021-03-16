@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class UImanager : UI
 {
-
     [SerializeField] public CanvasGroup pauseGroup;
     [SerializeField] private Image eqState;
     [SerializeField] private Sprite emptyEqTexture;
@@ -17,7 +16,7 @@ public class UImanager : UI
     [SerializeField] private string place;
     [SerializeField] private string eqFull;
 
-    private void Start()
+    private void Awake()
     {
         GameManager.uImanager = this;
         interactText.enabled = false;
@@ -59,6 +58,10 @@ public class UImanager : UI
 
     public void EndLevel()
     {
+        if (SceneManager.GetActiveScene().buildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        {
+            LoadMenu();
+        }
         LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

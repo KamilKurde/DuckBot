@@ -500,6 +500,7 @@ MonoBehaviour:
   dimmingActive: 0
   fadeImage: {fileID: 1840042150}
   opacityChangeTime: 1
+  audioMixer: {fileID: 24100000, guid: 6172306ba791c1546aefcc0ad6855985, type: 2}
   selectLevelGroup: {fileID: 783090500}
   buttonPrefab: {fileID: 1496810752746397957, guid: a39392e70c33aff429fb6c96953e03d4, type: 3}
 --- !u!1001 &455431981
@@ -667,7 +668,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &783090501
 MonoBehaviour:
@@ -1149,7 +1150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257070046625474078, guid: ded2806e218b46a47869c7644b8ff99a, type: 3}
       propertyPath: m_text
-      value: Select level
+      value: Levels
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded2806e218b46a47869c7644b8ff99a, type: 3}
