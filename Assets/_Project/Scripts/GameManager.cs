@@ -20,6 +20,12 @@ public static class GameManager
         return _channels[channelNumber];
     }
 
+    public static void Clear()
+    {
+        _channels.Clear();
+        _endpoints.Clear();
+    }
+
     public static void AddEndpoint(CableEndpoint endPoint)
     {
         _endpoints.Add(endPoint);

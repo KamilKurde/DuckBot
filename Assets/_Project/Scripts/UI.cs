@@ -46,6 +46,7 @@ public class UI : MonoBehaviour
     internal void LoadScene(int sceneIndex)
     {
         dimmingActive = true;
+        GameManager.Clear();
         StartCoroutine(LoadSceneCoroutine(sceneIndex, opacityChangeTime));
     }
 }
