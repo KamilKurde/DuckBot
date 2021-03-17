@@ -1,19 +1,18 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class UI : MonoBehaviour
 {
     public bool dimmingActive = false;
     [SerializeField] internal Image fadeImage;
     [Range(0.01f, 5f)]public float opacityChangeTime;
-    [SerializeField] private AudioMixer audioMixer;
 
     internal void Start()
     {
-        GameManager.audioMixer = audioMixer;
+        GameManager.audioMixer = GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer;
         GameSave.LoadAudioSettings();
     }
 

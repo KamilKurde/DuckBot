@@ -31,7 +31,6 @@ public static class GameManager
 
     public static void SetVolume(AudioGroup audioGroup, float volume)
     {
-        Debug.Log("zmiana głośności");
         var groupName = "";
         switch (audioGroup)
         {
@@ -45,7 +44,7 @@ public static class GameManager
                 groupName = "Music";
                 break;
         }
-
+        Debug.Log("zmiana głośności groupy " + groupName + " na " + volume);
         audioMixer.SetFloat(groupName, LinearToDecibel(volume));
     }
 
