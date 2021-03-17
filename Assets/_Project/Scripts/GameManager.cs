@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -105,9 +106,13 @@ public static class GameManager
             _endpoints.Remove(element as CableEndpoint);
         }
         var unusedChannelsKeys = new List<int>();
-        var channelsKeys = _channels.Keys;
+        var channelsKeys = _channels.Keys.ToArray();
         foreach (var key in channelsKeys)
         {
+            if (!_channels.ContainsKey(key))
+            {
+                return;
+            }
             lock (_channels[key])
             {
                 _channels[key].RemoveReferencesTo(element);
