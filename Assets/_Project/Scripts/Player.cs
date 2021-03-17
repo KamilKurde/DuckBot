@@ -10,7 +10,8 @@ public enum EqState
     CanPlace,
     CanTake,
     CantPlace,
-    NoTile
+    NoTile,
+    NoEq
 }
 
 public class Player : MonoBehaviour
@@ -30,7 +31,7 @@ public class Player : MonoBehaviour
     [Header("Rotation properties")] 
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
-    [HideInInspector] public EqState state = EqState.NoTile;
+    public EqState state = EqState.NoEq;
     private IInteractable _interactable = null;
     private PlaceTile placeTile = null;
 
@@ -88,7 +89,6 @@ public class Player : MonoBehaviour
 
     private void UpdateEqState()
     {
-
         if (placeTile == null)
         {
             state = EqState.NoTile;
@@ -164,7 +164,7 @@ public class Player : MonoBehaviour
         GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
         GameManager.uImanager.pauseGroup.interactable = isPaused;
         GameManager.uImanager.pauseGroup.blocksRaycasts = isPaused;
-        audioSource.volume = state ? 0f : 1f;
+        audioSource.enabled = !state;
         Time.timeScale = isPaused ? 0f : 1f;
     }
 

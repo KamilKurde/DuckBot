@@ -44,7 +44,6 @@ public static class GameManager
                 groupName = "Music";
                 break;
         }
-        Debug.Log("zmiana głośności groupy " + groupName + " na " + volume);
         audioMixer.SetFloat(groupName, LinearToDecibel(volume));
     }
 

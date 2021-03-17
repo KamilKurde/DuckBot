@@ -255,12 +255,11 @@ MonoBehaviour:
   speed: 8
   controller: {fileID: 9031368761028275554}
   animator: {fileID: 139715161749909280}
-  audioMixer: {fileID: 24100000, guid: 6172306ba791c1546aefcc0ad6855985, type: 2}
   audioSource: {fileID: 5102422542474008982}
   volumeChangeTime: 0.4
   rotationSpeed: 20
   swingPower: 0.3
-  state: 0
+  state: 4
   levelFinished: 0
 --- !u!96 &5535369906749536940
 TrailRenderer:

@@ -39,6 +39,10 @@ public class UImanager : UI
 
         switch (GameManager.player.state)
         {
+            case EqState.NoEq:
+                pickUpText.enabled = false;
+                eqState.sprite = emptyEqTexture;
+                break;
             case EqState.NoTile:
                 pickUpText.enabled = false;
                 break;
