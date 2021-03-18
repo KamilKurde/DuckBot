@@ -6,7 +6,6 @@ public class Menu : UI
     [SerializeField] private CanvasGroup selectLevelGroup;
     [SerializeField] private GameObject levelButtonPrefab;
     [SerializeField] private Image tutorialImage;
-    [SerializeField] private AudioControlls audioControlls;
     private GameObject musicManager;
 
     private void Awake()
@@ -26,10 +25,6 @@ public class Menu : UI
 
     public void OnTutorialButtonClicked()
     {
-        if (audioControlls.optionsAreVisible)
-        {
-            audioControlls.ChangeOptionsVisibility();
-        }
 
         if (selectLevelGroup.interactable)
         {
@@ -45,11 +40,6 @@ public class Menu : UI
         {
             tutorialImage.enabled = false;
         }
-
-        if (audioControlls.optionsAreVisible)
-        {
-            audioControlls.ChangeOptionsVisibility();
-        }
         
         var isVisible = selectLevelGroup.interactable;
         selectLevelGroup.alpha = isVisible ? 0f : 1f;
@@ -57,7 +47,7 @@ public class Menu : UI
         selectLevelGroup.blocksRaycasts = !isVisible;
     }
 
-    public void OnResetButtonClicked()
+    public void Reset()
     {
         musicManager = GameObject.Find("MusicManager");
         musicManager.SetActive(false);

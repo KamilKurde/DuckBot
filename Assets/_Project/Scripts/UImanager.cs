@@ -87,4 +87,9 @@ public class UImanager : UI
     {
         GameManager.uImanager = null;
     }
+
+    public void OnResumeButtonClicked()
+    {
+        GameManager.player.SetPauseState(false);
+    }
 }
