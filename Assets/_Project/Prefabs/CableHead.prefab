@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c984b16dd3c32444682ba5246faacfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
+  voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
+  colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
   tileRenderer: {fileID: 7333073288085752208}
-  headMaterials: {fileID: 11400000, guid: 8d3b19f425136d94a9893dfaef75f655, type: 2}
   channel: 0
   voltage: 0
 --- !u!1001 &8320828697722433852
@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2606f53d4f93aad4f8754e8391b0ad4f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fe45ea95d822151488d29292f8bd18b7, type: 2}
+      objectReference: {fileID: 2100000, guid: 3372fcc5fcfefe84e87fa90ad42e0628, type: 2}
     - target: {fileID: -7511558181221131132, guid: 2606f53d4f93aad4f8754e8391b0ad4f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 

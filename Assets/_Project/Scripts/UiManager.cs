@@ -1,9 +1,12 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UImanager : UI
+public class UiManager : UI
 {
+    [SerializeField] private CanvasGroup uiGroup;
+    [SerializeField] private CanvasGroup levelEndedGroup;
     [SerializeField] public CanvasGroup pauseGroup;
     [SerializeField] private Image eqState;
     [SerializeField] private Sprite emptyEqTexture;
@@ -18,7 +21,7 @@ public class UImanager : UI
 
     private void Awake()
     {
-        GameManager.uImanager = this;
+        GameManager.uiManager = this;
         interactText.enabled = false;
         pickUpText.enabled = false;
         var scene = SceneManager.GetActiveScene();
@@ -85,11 +88,27 @@ public class UImanager : UI
 
     private void OnDestroy()
     {
-        GameManager.uImanager = null;
+        GameManager.uiManager = null;
     }
 
     public void OnResumeButtonClicked()
     {
         GameManager.player.SetPauseState(false);
+    }
+
+    public void DisplayLevelEndedGroup()
+    {
+        pauseGroup.DOFade(0f, 0.5f);
+        pauseGroup.interactable = false;
+        pauseGroup.blocksRaycasts = false;
+        uiGroup.DOFade(0f, 0.5f);
+        levelEndedGroup.DOFade(1f, 0.5f);
+        levelEndedGroup.interactable = true;
+        levelEndedGroup.blocksRaycasts = true;
+    }
+
+    public void OnContinueButtonClicked()
+    {
+        EndLevel();
     }
 }

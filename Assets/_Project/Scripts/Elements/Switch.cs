@@ -7,10 +7,10 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     [SerializeField] private int inputChannel = 0;
     [Header("Outputs")]
     [SerializeField] private int outputChannel = 0;
-    // Start is called before the first frame update
-    private bool isActive = false;
-    private AudioSource switch_sound;
-    private Material lightMaterial;
+    private bool _isActive = false;
+    private AudioSource _switchSound;
+    [SerializeField] private Material lightMaterial;
+    [SerializeField] private Material darkMaterial;
     
     private float _voltage = 0f;
 
@@ -26,7 +26,7 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
         }
         else
         {
-            material = voltageMaterials[0];
+            material = darkMaterial;
         }
 
         materials[2] = material;
@@ -36,15 +36,14 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     public void SetInput(float voltage)
     {
         _voltage = voltage;
-        UpdateColor(new []{1}, _voltage);
+        UpdateColor(1, _voltage);
         GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        switch_sound = GetComponent<AudioSource>();
-        lightMaterial = GetComponent<Renderer>().materials[2];
+        _switchSound = GetComponent<AudioSource>();
         SetLight(false);
         GameManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
@@ -57,19 +56,19 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
 
     public void Interact()
     {
-        isActive = !isActive;
-        if (isActive)
+        _isActive = !_isActive;
+        if (_isActive)
         {
             GameManager.GetChannel(outputChannel).AddVoltageSource(this);
             ChangeListenerToReceiver(inputChannel);
-            switch_sound.Play();
+            _switchSound.Play();
         }
         else
         {
             GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
             ChangeReceiverToListner(inputChannel);
-            switch_sound.Play();
+            _switchSound.Play();
         }
-        SetLight(isActive);
+        SetLight(_isActive);
     }
 }

@@ -34,14 +34,14 @@ public class Menu : UI
 
         if (tutorialImage.enabled)
         {
-            tutorialImage.DOFade(0f, 1f).OnComplete(() => {
+            tutorialImage.DOFade(0f, 0.5f).OnComplete(() => {
                 tutorialImage.enabled = false;
             });
         }
         else
         {
             tutorialImage.enabled = true;
-            tutorialImage.DOFade(1f, 1f);
+            tutorialImage.DOFade(1f, 0.5f);
         }
         //tutorialImage.enabled = !tutorialImage.enabled;
     }

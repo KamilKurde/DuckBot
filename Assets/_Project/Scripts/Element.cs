@@ -1,83 +1,79 @@
-using UnityAtoms;
+using UnityAtoms.BaseAtoms;
 using UnityEngine;
 
 public abstract class Element : MonoBehaviour
 {
-    // Get materials from inspector
-    [SerializeField] internal MaterialValueList voltageMaterials;
+    [SerializeField] private FloatValueList voltageList;
+
+    [SerializeField] private ColorValueList colorList;
+
     // Component that's null when object doesn't have Light Component
     internal Light _light = null;
+
     // Method which updates materials with given indexes and light component (if present)
-    private void UpdateColor(int[] indexes, float voltage, MaterialValueList materialsList)
+    internal void UpdateColor(int[] indexes, float voltage)
     {
         if (this == null)
         {
             return;
         }
-        var materials = GetComponent<Renderer>().materials;
-        Material material = null;
 
-        if (Mathf.Approximately(voltage, 0f))
+        var materials = GetComponent<Renderer>().materials;
+        var color = Color.gray;
+
+        var lastMaximalVoltage = 0f;
+        var lastMaximalColor = Color.gray;
+
+        for (var i = 0; i < voltageList.Count; i++)
         {
-            material = materialsList[0];
-            if (_light != null)
-                _light.enabled = false;
-        }
-        else if (voltage > 0 && voltage <= 2)
-        {
-            material = materialsList[1];
-            if (_light != null)
+            if (voltage >= lastMaximalVoltage && voltage < voltageList[i])
             {
-                _light.color = new Color(0f, 1f, 0f);
-                _light.enabled = true;
+                
+                // IT JUST WORKS
+                var startingColor = lastMaximalColor;
+                var targetColor = colorList[i];
+                var voltageFromStart = voltage - lastMaximalVoltage;
+                var maxVoltageFromStartInRange = voltageList[i] - lastMaximalVoltage;
+                var divider = voltageFromStart / maxVoltageFromStartInRange;
+                color = Color.Lerp(
+                    startingColor,
+                    targetColor,
+                    divider
+                );
+                break;
+                // ~Todd Howard
             }
+
+            lastMaximalVoltage = voltageList[i];
+            lastMaximalColor = colorList[i];
         }
-        else if (voltage > 2 && voltage <= 4)
+
+        if (_light != null && color == Color.gray)
         {
-            material = materialsList[2];
-            if (_light != null)
-            {
-                _light.color = new Color(0f, 0.66f, 1f);
-                _light.enabled = true;
-            }
+            _light.enabled = false;
         }
-        else if (voltage >= 4)
+        else if (_light != null)
         {
-            material = materialsList[3];
-            if (_light != null)
-            {
-                _light.color = new Color(1f, 0f, 0f);
-                _light.enabled = true;
-            }
+            _light.color = color;
+            _light.enabled = true;
         }
 
         foreach (var index in indexes)
         {
-            materials[index] = material;
+            materials[index].color = color;
+            materials[index].SetColor("_EmissionColor", color);
         }
+
         GetComponent<Renderer>().materials = materials;
-    }
-
-    internal void UpdateColor(int index, float voltage, MaterialValueList materialsList)
-    {
-        UpdateColor(new []{index}, voltage, materialsList);
-    }
-
-    internal void UpdateColor(int[] indexes, float voltage)
-    {
-        UpdateColor(indexes, voltage, voltageMaterials);
     }
 
     internal void UpdateColor(int index, float voltage)
     {
-        UpdateColor(new []{index}, voltage);
+        UpdateColor(new[] {index}, voltage);
     }
 
     // Method to invoke when prefab has light component
-    internal void LightInit()
-    {
-        _light = GetComponent<Light>();
-    }
+    internal void LightInit() { _light = GetComponent<Light>(); }
 
     internal void ChangeListenerToReceiver(int channel)
     {
@@ -117,8 +113,5 @@ public abstract class Element : MonoBehaviour
         from = to;
     }
 
-    private void OnDisable()
-    {
-        GameManager.RemoveAllReferencesTo(this);
-    }
+    private void OnDisable() { GameManager.RemoveAllReferencesTo(this); }
 }

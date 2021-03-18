@@ -183,7 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03509a147c23904bb933047cc3aa45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
+  voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
+  colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
   sizeAnimator: {fileID: 0}
   inputChannel: 0
   outputChannel: 0
@@ -238,6 +239,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b9cd9581858dc5541bc54486904dbfe3, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe45ea95d822151488d29292f8bd18b7, type: 2}
     - target: {fileID: -7511558181221131132, guid: b9cd9581858dc5541bc54486904dbfe3, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 

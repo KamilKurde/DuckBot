@@ -10,7 +10,7 @@ public class Settings : MonoBehaviour
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
-        if (GameManager.uImanager == null)
+        if (GameManager.uiManager == null)
         {
             return;
         }
@@ -26,12 +26,12 @@ public class Settings : MonoBehaviour
 
     public void OnConfirmationButtonClicked()
     {
-        if (GameManager.uImanager != null)
+        if (GameManager.uiManager != null)
         {
             musicManager = GameObject.Find("MusicManager");
             musicManager.SetActive(false);
             GameSave.CurrentLevelId = 1;
-            GameManager.uImanager.LoadMenu();
+            GameManager.uiManager.LoadMenu();
         }
         else
         {
@@ -45,14 +45,14 @@ public class Settings : MonoBehaviour
         canvasGroup.interactable = state;
         canvasGroup.blocksRaycasts = state;
         
-        if (GameManager.uImanager == null)
+        if (GameManager.uiManager == null)
         {
             return;
         }
         
-        GameManager.uImanager.pauseGroup.alpha = state ? 0f : 1f;
-        GameManager.uImanager.pauseGroup.interactable = !state;
-        GameManager.uImanager.pauseGroup.blocksRaycasts = !state;
+        GameManager.uiManager.pauseGroup.alpha = state ? 0f : 1f;
+        GameManager.uiManager.pauseGroup.interactable = !state;
+        GameManager.uiManager.pauseGroup.blocksRaycasts = !state;
     }
 
     public void OnCloseButtonClicked()

@@ -7,7 +7,7 @@ public abstract class PlaceableElement : Element, IPlaceable
     [SerializeField] private Animator sizeAnimator;
     private bool _isVisible = true;
 
-    private void changeState()
+    private void ChangeState()
     {
         sizeAnimator.SetTrigger("ChangeState");
     }
@@ -16,7 +16,7 @@ public abstract class PlaceableElement : Element, IPlaceable
     {
         if (!_isVisible) return;
         _isVisible = false;
-        changeState();
+        ChangeState();
         UpdateChannels(new List<int> {0,0,0}, new List<int> {0,0,0});
     }
 
@@ -24,7 +24,7 @@ public abstract class PlaceableElement : Element, IPlaceable
     {
         if (_isVisible) return;
         _isVisible = true;
-        changeState();
+        ChangeState();
     }
 
     public bool IsVisible()

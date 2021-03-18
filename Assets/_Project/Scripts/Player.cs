@@ -161,9 +161,9 @@ public class Player : MonoBehaviour
     public void SetPauseState(bool state)
     {
         isPaused = state;
-        GameManager.uImanager.pauseGroup.alpha = isPaused ? 1f : 0f;
-        GameManager.uImanager.pauseGroup.interactable = isPaused;
-        GameManager.uImanager.pauseGroup.blocksRaycasts = isPaused;
+        GameManager.uiManager.pauseGroup.alpha = isPaused ? 1f : 0f;
+        GameManager.uiManager.pauseGroup.interactable = isPaused;
+        GameManager.uiManager.pauseGroup.blocksRaycasts = isPaused;
         audioSource.enabled = !state;
         Time.timeScale = isPaused ? 0f : 1f;
     }

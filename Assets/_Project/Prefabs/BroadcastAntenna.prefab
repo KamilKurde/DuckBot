@@ -13,22 +13,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 2, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5768664622787574602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4801288083073411525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63df9f62b5437984dab1e5d1b2c683d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
-  channelInfoText: {fileID: 1805268333203785412}
-  inputChannel: 0
-  currentChannel: 1
 --- !u!82 &1029826899290125581
 AudioSource:
   m_ObjectHideFlags: 0
@@ -125,6 +109,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5768664622787574602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801288083073411525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63df9f62b5437984dab1e5d1b2c683d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
+  colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
+  channelInfoText: {fileID: 1805268333203785412}
+  inputChannel: 0
+  currentChannel: 1
 --- !u!1 &6486464340311711658
 GameObject:
   m_ObjectHideFlags: 0

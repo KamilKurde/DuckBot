@@ -264,7 +264,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e729a584c05e3c4397d99f8ad28691a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageMaterials: {fileID: 11400000, guid: 6a0559a2ae04a0447a63709ecd834d39, type: 2}
+  voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
+  colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
   textMeshPro: {fileID: 3377282726175637829}
   requirementFullfiled: 0
   requiredVoltage: 0

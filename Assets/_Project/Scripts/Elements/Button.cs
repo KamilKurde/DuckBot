@@ -16,7 +16,7 @@ public class Button : PlaceableElement, ISource, IReceiver
     public void SetInput(float voltage)
     {
         _voltage = voltage;
-        UpdateColor(new []{1}, _voltage);
+        UpdateColor(1, _voltage);
         GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 

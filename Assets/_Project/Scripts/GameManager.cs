@@ -16,7 +16,7 @@ public static class GameManager
     private static Dictionary<int, Channel> _channels = new Dictionary<int, Channel>();
     private static List<CableEndpoint> _endpoints = new List<CableEndpoint>();
     public static IPlaceable placeable;
-    public static UImanager uImanager;
+    public static UiManager uiManager;
     public static Player player;
     public static AudioMixer audioMixer;
 
@@ -86,11 +86,12 @@ public static class GameManager
 
         if (!allRequirementsFullfiled) return;
         player.levelFinished = true;
-        if (uImanager == null)
+        if (uiManager == null)
         {
             return;
         }
-        uImanager.EndLevel();
+
+        uiManager.DisplayLevelEndedGroup();
     }
 
     // Removing all references to Object (eg. when object is picked up)
