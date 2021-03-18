@@ -125,8 +125,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 2
-  m_fontSizeBase: 2
+  m_fontSize: 3.5
+  m_fontSizeBase: 3.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 988d3a913c635a145a06e328560a34d0, type: 2}
     - target: {fileID: 919132149155446097, guid: 9546eb4cf15e0dd4c99dee636314f7ce, type: 3}
       propertyPath: m_Name
-      value: power_box
+      value: CableEndpoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9546eb4cf15e0dd4c99dee636314f7ce, type: 3}

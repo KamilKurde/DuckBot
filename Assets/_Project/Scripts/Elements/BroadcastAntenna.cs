@@ -9,10 +9,13 @@ public class BroadcastAntenna : Element, IReceiver, ISource, IInteractable
 
     [SerializeField, Range(1, 3)] private int currentChannel;
 
+    private AudioSource radio_sound;
+
     private float _voltage = 0f;
 
     private void Start()
     {
+        radio_sound = GetComponent<AudioSource>();
         GameManager.GetChannel(inputChannel).AddVoltageReceiver(this);
         GameManager.GetChannel(-currentChannel).AddVoltageSource(this);
         channelInfoText.text = currentChannel.ToString();
@@ -45,5 +48,6 @@ public class BroadcastAntenna : Element, IReceiver, ISource, IInteractable
         IncrementChannel();
         channelInfoText.text = currentChannel.ToString();
         GameManager.GetChannel(-currentChannel).AddVoltageSource(this);
+        radio_sound.Play();
     }
 }

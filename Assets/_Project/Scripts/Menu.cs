@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,8 +31,19 @@ public class Menu : UI
         {
             OnSelectLevelButtonClicked();
         }
-        
-        tutorialImage.enabled = !tutorialImage.enabled;
+
+        if (tutorialImage.enabled)
+        {
+            tutorialImage.DOFade(0f, 1f).OnComplete(() => {
+                tutorialImage.enabled = false;
+            });
+        }
+        else
+        {
+            tutorialImage.enabled = true;
+            tutorialImage.DOFade(1f, 1f);
+        }
+        //tutorialImage.enabled = !tutorialImage.enabled;
     }
 
     public void OnSelectLevelButtonClicked()

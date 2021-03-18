@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 61468753}
   m_Layer: 0
   m_Name: MusicManager
-  m_TagString: Untagged
+  m_TagString: MusicManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7028c8bab0afd5e4d951e2af244d4a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectTag: MusicManager
 --- !u!82 &61468754
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1038,7 +1039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257070044756803012, guid: ded2806e218b46a47869c7644b8ff99a, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7257070044756803012, guid: ded2806e218b46a47869c7644b8ff99a, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1308,8 +1309,8 @@ RectTransform:
   m_Children:
   - {fileID: 1519591276}
   - {fileID: 1501418493}
-  - {fileID: 746482646}
   - {fileID: 1462536062}
+  - {fileID: 746482646}
   - {fileID: 455431982}
   - {fileID: 113466956}
   m_Father: {fileID: 288230497}
@@ -1571,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7257070044756803012, guid: ded2806e218b46a47869c7644b8ff99a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7257070044756803012, guid: ded2806e218b46a47869c7644b8ff99a, type: 3}
       propertyPath: m_AnchorMax.x
