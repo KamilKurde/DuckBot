@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a76bebd04977a2e4fb2dcf0a1278340a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
+  - colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
+  - sizeAnimator: {instanceID: 0}
+  - voltageText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
