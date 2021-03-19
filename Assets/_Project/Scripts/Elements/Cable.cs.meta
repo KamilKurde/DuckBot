@@ -3,7 +3,9 @@ guid: 9abc449700216c44f8931d1c17b204ed
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
+  - colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -22,30 +22,32 @@ public abstract class Element : MonoBehaviour
         var color = Color.gray;
 
         var lastMaximalVoltage = 0f;
+        // Default color for voltage near 0
         var lastMaximalColor = Color.gray;
 
         for (var i = 0; i < voltageList.Count; i++)
         {
-            if (voltage >= lastMaximalVoltage && voltage < voltageList[i])
+            // If voltage isn't lower than voltage from current element in array
+            if (!(voltage < voltageList[i]))
             {
-                
-                // IT JUST WORKS
-                var startingColor = lastMaximalColor;
-                var targetColor = colorList[i];
-                var voltageFromStart = voltage - lastMaximalVoltage;
-                var maxVoltageFromStartInRange = voltageList[i] - lastMaximalVoltage;
-                var divider = voltageFromStart / maxVoltageFromStartInRange;
-                color = Color.Lerp(
-                    startingColor,
-                    targetColor,
-                    divider
-                );
-                break;
-                // ~Todd Howard
+                lastMaximalVoltage = voltageList[i];
+                lastMaximalColor = colorList[i];
+                continue;
             }
-
-            lastMaximalVoltage = voltageList[i];
-            lastMaximalColor = colorList[i];
+            
+            // DON'T TOUCH IT UNDER ANY CIRCUMSTANCES
+            var voltageFromStartOfVoltageLevel = voltage - lastMaximalVoltage;                  // For  4V it will return 0,7 ( 3,3 + 0,7 = 4 )
+            var maxVoltageFromStartOfVoltageLevel = voltageList[i] - lastMaximalVoltage;        // For 4V it will return 1,7 ( 5 - 3,3 = 1,7 )
+            // It returns numbers in 0f..1f where 0f means take color from previous voltage level, 1f means take color from current voltage level, and 0,5f means take the color in the middle of one and the other
+            var divider = voltageFromStartOfVoltageLevel / maxVoltageFromStartOfVoltageLevel;   // For 4V it will return 0,41 ( 0,7 / 1,7 = 0,41 )
+            // From color of previous voltage level, to color of current voltage level
+            color = Color.Lerp(
+                lastMaximalColor,
+                colorList[i],
+                divider
+            );
+            break;
+            // IT JUST WORKS ~Todd Howard
         }
 
         if (_light != null && color == Color.gray)
