@@ -7,7 +7,7 @@ public class Menu : UI
     [SerializeField] private CanvasGroup selectLevelGroup;
     [SerializeField] private GameObject levelButtonPrefab;
     [SerializeField] private Image tutorialImage;
-    private GameObject musicManager;
+    private GameObject _musicManager;
 
     private void Awake()
     {
@@ -43,7 +43,6 @@ public class Menu : UI
             tutorialImage.enabled = true;
             tutorialImage.DOFade(1f, 0.5f);
         }
-        //tutorialImage.enabled = !tutorialImage.enabled;
     }
 
     public void OnSelectLevelButtonClicked()
@@ -61,10 +60,9 @@ public class Menu : UI
 
     public void Reset()
     {
-        musicManager = GameObject.Find("MusicManager");
-        musicManager.SetActive(false);
+        _musicManager = GameObject.Find("MusicManager");
+        _musicManager.SetActive(false);
         GameSave.CurrentLevelId = 1;
-        dimmingActive = true;
         LoadScene(0);
     }
 

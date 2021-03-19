@@ -59,12 +59,13 @@ public class Player : MonoBehaviour
     private void Update()
     {
         HandleVolumeChange(Time.deltaTime);
+        Move();
         if (levelFinished)
         {
             _audioIsActive = false;
+            _movementDirection = Vector3.zero;
             return;
         }
-        Move();
     }
 
     // Method invoked by Player Input Component when input associated with movement changed
@@ -76,11 +77,7 @@ public class Player : MonoBehaviour
 
     public void OnInteractionInput(InputAction.CallbackContext context)
     {
-        if (levelFinished)
-        {
-            return;
-        }
-        if (!context.started)
+        if (levelFinished || !context.started)
         {
             return;
         }
@@ -116,26 +113,18 @@ public class Player : MonoBehaviour
 
     public void OnPlaceInput(InputAction.CallbackContext context)
     {
-        if (levelFinished)
-        {
-            return;
-        }
-        
-        if (!context.started)
+        if (!context.started || placeTile == null || levelFinished)
         {
             return;
         }
 
-        if (placeTile == null)
-        {
-            return;
-        }
-
+        // If both player and tile don't have placeable
         if (GameManager.placeable == null && !placeTile.HasPlaceable)
         {
             return;
         }
 
+        // if both player and tile do have placeable
         if (GameManager.placeable != null && placeTile.HasPlaceable)
         {
             return;

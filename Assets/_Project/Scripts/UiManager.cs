@@ -5,16 +5,19 @@ using UnityEngine.UI;
 
 public class UiManager : UI
 {
+    [Header("Groups")]
     [SerializeField] private CanvasGroup uiGroup;
     [SerializeField] private CanvasGroup levelEndedGroup;
     [SerializeField] public CanvasGroup pauseGroup;
+    [Header("Images")]
     [SerializeField] private Image eqState;
     [SerializeField] private Sprite emptyEqTexture;
     [SerializeField] private Sprite fullEqTexture;
+    [Header("Texts")]
     [SerializeField] private Text levelText;
     [SerializeField] private Text interactText;
     [SerializeField] private Text pickUpText;
-    [Header("Texts")]
+    [Header("Strings")]
     [SerializeField] private string pickUp;
     [SerializeField] private string place;
     [SerializeField] private string eqFull;
@@ -30,7 +33,7 @@ public class UiManager : UI
 
     private void Update()
     {
-        HandleOpacityChange(Time.deltaTime);
+        //HandleOpacityChange(Time.deltaTime);
         interactText.enabled = GameManager.player.HasInteractable();
 
         if (GameManager.player == null)
@@ -75,14 +78,12 @@ public class UiManager : UI
     public void Restart()
     {
         GameManager.player.SetPauseState(false);
-        dimmingActive = true;
         LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void LoadMenu()
     {
         GameManager.player.SetPauseState(false);
-        dimmingActive = true;
         LoadScene(0);
     }
 
