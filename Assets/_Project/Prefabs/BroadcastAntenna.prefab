@@ -121,8 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63df9f62b5437984dab1e5d1b2c683d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
-  colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
+  voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
   channelInfoText: {fileID: 1805268333203785412}
   inputChannel: 0
   currentChannel: 1

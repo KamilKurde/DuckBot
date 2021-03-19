@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UiManager : UI
 {
     [Header("Groups")]
-    [SerializeField] private CanvasGroup uiGroup;
+    [SerializeField] public CanvasGroup uiGroup;
     [SerializeField] private CanvasGroup levelEndedGroup;
     [SerializeField] public CanvasGroup pauseGroup;
     [Header("Images")]

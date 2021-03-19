@@ -1,11 +1,9 @@
-using UnityAtoms.BaseAtoms;
+using UnityAtoms;
 using UnityEngine;
 
 public abstract class Element : MonoBehaviour
 {
-    [SerializeField] private FloatValueList voltageList;
-
-    [SerializeField] private ColorValueList colorList;
+    [SerializeField] private VoltageDataValueList voltageList;
 
     // Component that's null when object doesn't have Light Component
     internal Light _light = null;
@@ -28,22 +26,22 @@ public abstract class Element : MonoBehaviour
         for (var i = 0; i < voltageList.Count; i++)
         {
             // If voltage isn't lower than voltage from current element in array
-            if (voltage >= voltageList[i])
+            if (voltage >= voltageList[i].value)
             {
-                lastMaximalVoltage = voltageList[i];
-                lastMaximalColor = colorList[i];
+                lastMaximalVoltage = voltageList[i].value;
+                lastMaximalColor = voltageList[i].color;
                 continue;
             }
 
             // DON'T TOUCH IT UNDER ANY CIRCUMSTANCES
             var voltageFromStartOfVoltageLevel = voltage - lastMaximalVoltage;                  // For  4V it will return 0,7 ( 3,3 + 0,7 = 4 )
-            var maxVoltageFromStartOfVoltageLevel = voltageList[i] - lastMaximalVoltage;        // For 4V it will return 1,7 ( 5 - 3,3 = 1,7 )
+            var maxVoltageFromStartOfVoltageLevel = voltageList[i].value - lastMaximalVoltage;        // For 4V it will return 1,7 ( 5 - 3,3 = 1,7 )
             // It returns numbers in 0f..1f where 0f means take color from previous voltage level, 1f means take color from current voltage level, and 0,5f means take the color in the middle of one and the other
             var divider = voltageFromStartOfVoltageLevel / maxVoltageFromStartOfVoltageLevel;   // For 4V it will return 0,41 ( 0,7 / 1,7 = 0,41 )
             // From color of previous voltage level, to color of current voltage level
             color = Color.Lerp(
                 lastMaximalColor,
-                colorList[i],
+                voltageList[i].color,
                 divider
             );
             break;

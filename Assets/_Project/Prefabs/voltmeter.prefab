@@ -31,8 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76bebd04977a2e4fb2dcf0a1278340a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageList: {fileID: 11400000, guid: 0436abe504981cb4fa396e686dcfa6be, type: 2}
-  colorList: {fileID: 11400000, guid: af32d20ded58d804bb85daf1f1d01cd7, type: 2}
+  voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
   sizeAnimator: {fileID: 9125336236715111706}
   voltageText: {fileID: 7190640605067414737}
   inputChannel: 0

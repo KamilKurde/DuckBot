@@ -38,11 +38,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba05509f00c0ed94aa3c3177ff4a91fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voltageMaterials: {fileID: 0}
+  voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
   _inputs: 000000000000000000000000
   _outputs: 000000000000000000000000
   rotation: 0
-  _placableGameObject: {fileID: 0}
+  _gameObject: {fileID: 0}
 --- !u!1001 &322338533424402870
 PrefabInstance:
   m_ObjectHideFlags: 0

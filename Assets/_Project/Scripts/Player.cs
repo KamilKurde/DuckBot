@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -59,13 +60,12 @@ public class Player : MonoBehaviour
     private void Update()
     {
         HandleVolumeChange(Time.deltaTime);
-        Move();
         if (levelFinished)
         {
             _audioIsActive = false;
             _movementDirection = Vector3.zero;
-            return;
         }
+        Move();
     }
 
     // Method invoked by Player Input Component when input associated with movement changed
@@ -150,6 +150,7 @@ public class Player : MonoBehaviour
     public void SetPauseState(bool state)
     {
         isPaused = state;
+        GameManager.uiManager.uiGroup.alpha = isPaused ? 0f : 1f;
         GameManager.uiManager.pauseGroup.alpha = isPaused ? 1f : 0f;
         GameManager.uiManager.pauseGroup.interactable = isPaused;
         GameManager.uiManager.pauseGroup.blocksRaycasts = isPaused;
@@ -159,7 +160,7 @@ public class Player : MonoBehaviour
 
     public void OnPauseEnter(InputAction.CallbackContext context)
     {
-        if (!context.started)
+        if (!context.started || levelFinished)
         {
             return;
         }

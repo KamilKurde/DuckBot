@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7438bff2d7dc442c8fdd74f95aa42bf, type: 3}
-  m_Name: VoltageColors
+  m_Script: {fileID: 11500000, guid: 6de1bdaa49800524080b19b945b18c48, type: 3}
+  m_Name: VoltageDataValueList
   m_EditorClassIdentifier: 
   _developerDescription: 
   Cleared: {fileID: 0}
@@ -18,7 +18,11 @@ MonoBehaviour:
   Added: {fileID: 0}
   Removed: {fileID: 0}
   list:
-  - {r: 0, g: 1, b: 0, a: 0}
-  - {r: 0, g: 0.66, b: 1, a: 0}
-  - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 1, g: 0.96754205, b: 0, a: 0}
+  - value: 1.2
+    color: {r: 0, g: 1, b: 0, a: 0}
+  - value: 3.3
+    color: {r: 0, g: 0.65882355, b: 1, a: 0}
+  - value: 5
+    color: {r: 1, g: 0, b: 0, a: 0}
+  - value: 12
+    color: {r: 1, g: 0.96862745, b: 0, a: 0}
