@@ -28,13 +28,13 @@ public abstract class Element : MonoBehaviour
         for (var i = 0; i < voltageList.Count; i++)
         {
             // If voltage isn't lower than voltage from current element in array
-            if (!(voltage < voltageList[i]))
+            if (voltage >= voltageList[i])
             {
                 lastMaximalVoltage = voltageList[i];
                 lastMaximalColor = colorList[i];
                 continue;
             }
-            
+
             // DON'T TOUCH IT UNDER ANY CIRCUMSTANCES
             var voltageFromStartOfVoltageLevel = voltage - lastMaximalVoltage;                  // For  4V it will return 0,7 ( 3,3 + 0,7 = 4 )
             var maxVoltageFromStartOfVoltageLevel = voltageList[i] - lastMaximalVoltage;        // For 4V it will return 1,7 ( 5 - 3,3 = 1,7 )
