@@ -1,35 +1,31 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup _confirmation;
-    private GameObject musicManager;
+    [SerializeField] private CanvasGroup confirmation;
+    private GameObject _musicManager;
 
-    private CanvasGroup canvasGroup;
+    private CanvasGroup _canvasGroup;
     
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
-        if (GameManager.uiManager == null)
-        {
-            return;
-        }
-        
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public void OnResetButtonClicked()
     {
-        _confirmation.alpha = 1f;
-        _confirmation.interactable = true;
-        _confirmation.blocksRaycasts = true;
+        confirmation.DOFade(1f, 0.5f);
+        confirmation.interactable = true;
+        confirmation.blocksRaycasts = true;
     }
 
     public void OnConfirmationButtonClicked()
     {
         if (GameManager.uiManager != null)
         {
-            musicManager = GameObject.Find("MusicManager");
-            musicManager.SetActive(false);
+            _musicManager = GameObject.Find("MusicManager");
+            _musicManager.SetActive(false);
             GameSave.CurrentLevelId = 1;
             GameManager.uiManager.LoadMenu();
         }
@@ -41,9 +37,9 @@ public class Settings : MonoBehaviour
 
     public void ChangeVisibilityTo(bool state)
     {
-        canvasGroup.alpha = state ? 1f : 0f;
-        canvasGroup.interactable = state;
-        canvasGroup.blocksRaycasts = state;
+        _canvasGroup.alpha = state ? 1f : 0f;
+        _canvasGroup.interactable = state;
+        _canvasGroup.blocksRaycasts = state;
         
         if (GameManager.uiManager == null)
         {
@@ -58,5 +54,6 @@ public class Settings : MonoBehaviour
     public void OnCloseButtonClicked()
     {
         ChangeVisibilityTo(false);
+        GameSave.SaveGame();
     }
 }

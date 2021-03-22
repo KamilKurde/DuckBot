@@ -109,25 +109,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &1339589557525019276
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4610138962759034491}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 21bafd6c05785e4438cfe567ca7a88d8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &754105752716437813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
-  sizeAnimator: {fileID: 1339589557525019276}
   activatedMaterial: {fileID: 8339514984900967656, guid: e45ef4b8fa0fa2849a6db2ebe28de170, type: 3}
   deactivatedMaterial: {fileID: -5595750480765293007, guid: e45ef4b8fa0fa2849a6db2ebe28de170, type: 3}
   inputChannel1: 0

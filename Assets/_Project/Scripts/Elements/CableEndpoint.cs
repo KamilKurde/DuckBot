@@ -16,20 +16,14 @@ public class CableEndpoint : Element, IReceiver
         if (Math.Abs(voltage - requiredVoltage) < 0.1f)
         {
             textMeshPro.color = Color.white;
-            if (_light != null)
-            {
-                _light.enabled = true;
-            }
             requirementFullfiled = true;
+            UpdateColor(1, voltage);
         }
         else
         {
             textMeshPro.color = Color.gray;
-            if (_light != null)
-            {
-                _light.enabled = false;
-            }
             requirementFullfiled = false;
+            UpdateColor(1, 0f);
         }
         GameManager.CheckRequirements();
     }
@@ -38,7 +32,7 @@ public class CableEndpoint : Element, IReceiver
     {
         GameManager.AddEndpoint(this);
         LightInit();
-        textMeshPro.text = requiredVoltage.ToString(CultureInfo.InvariantCulture);
+        textMeshPro.text = requiredVoltage.ToString("F1", CultureInfo.InvariantCulture);
         GameManager.GetChannel(inputChannel).AddVoltageReceiver(this);
     }
 }

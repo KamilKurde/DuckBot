@@ -9,11 +9,15 @@ public class UI : MonoBehaviour
     [SerializeField] internal Image fadeImage;
     [Range(0.01f, 5f)]public float opacityChangeTime;
 
-    internal void Start()
+    private void OnEnable()
     {
         GameManager.audioMixer = GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer;
-        GameSave.LoadAudioSettings();
+    }
+
+    internal void Start()
+    {
         fadeImage.DOFade(0f, opacityChangeTime);
+        GameSave.LoadAudioSettings();
     }
 
     internal void LoadScene(int sceneIndex)

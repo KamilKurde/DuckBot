@@ -9,7 +9,10 @@ public static class GameSave
 
     private static GameSaveFile LoadGame()
     {
-        if (!File.Exists(FilePath)) return new GameSaveFile();
+        if (!File.Exists(FilePath))
+        {
+            return new GameSaveFile();
+        }
         var dataStream = new FileStream(FilePath, FileMode.Open);
 
         var converter = new BinaryFormatter();
@@ -26,7 +29,7 @@ public static class GameSave
         GameManager.SetVolume(AudioGroup.Music, Save.musicVolume);
     }
 
-    private static void SaveGame()
+    public static void SaveGame()
     {
         var dataStream = new FileStream(FilePath, FileMode.Create);
         
@@ -52,7 +55,6 @@ public static class GameSave
         set
         {
             Save.audioVolume = value;
-            SaveGame();
             GameManager.SetVolume(AudioGroup.Master, Save.audioVolume);
         }
     }
@@ -63,7 +65,6 @@ public static class GameSave
         set
         {
             Save.sfxVolume = value;
-            SaveGame();
             GameManager.SetVolume(AudioGroup.Sound, Save.sfxVolume);
         }
     }
@@ -74,7 +75,6 @@ public static class GameSave
         set
         {
             Save.musicVolume = value;
-            SaveGame();
             GameManager.SetVolume(AudioGroup.Music, Save.musicVolume);
         }
     }

@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078455249564479429}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.011}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4718214627774989417}
@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.31}
-  m_SizeDelta: {x: 20, y: 5}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &4755316334750396671
 MeshRenderer:
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Voltage
+  m_text: 125.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfca9b31540e04d44ba0111828e93fb0, type: 2}
   m_sharedMaterial: {fileID: 3438493164898284132, guid: dfca9b31540e04d44ba0111828e93fb0, type: 2}
@@ -125,15 +125,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 3.5
-  m_fontSizeBase: 3.5
+  m_fontSize: 3.9
+  m_fontSizeBase: 4.5
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 1
+  m_fontSizeMax: 5
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -202,8 +202,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Intensity: 1.5
+  m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -327,7 +327,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 9546eb4cf15e0dd4c99dee636314f7ce, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 988d3a913c635a145a06e328560a34d0, type: 2}
+      objectReference: {fileID: 2100000, guid: 3372fcc5fcfefe84e87fa90ad42e0628, type: 2}
     - target: {fileID: 919132149155446097, guid: 9546eb4cf15e0dd4c99dee636314f7ce, type: 3}
       propertyPath: m_Name
       value: CableEndpoint

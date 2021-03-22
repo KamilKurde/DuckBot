@@ -33,7 +33,6 @@ public class UiManager : UI
 
     private void Update()
     {
-        //HandleOpacityChange(Time.deltaTime);
         interactText.enabled = GameManager.player.HasInteractable();
 
         if (GameManager.player == null)
@@ -100,11 +99,11 @@ public class UiManager : UI
 
     public void DisplayLevelEndedGroup()
     {
-        pauseGroup.DOFade(0f, 0.5f);
+        pauseGroup.DOFade(0f, opacityChangeTime);
         pauseGroup.interactable = false;
         pauseGroup.blocksRaycasts = false;
-        uiGroup.DOFade(0f, 0.5f);
-        levelEndedGroup.DOFade(0.8f, 0.5f);
+        uiGroup.DOFade(0f, opacityChangeTime);
+        levelEndedGroup.DOFade(1f, opacityChangeTime);
         levelEndedGroup.interactable = true;
         levelEndedGroup.blocksRaycasts = true;
     }

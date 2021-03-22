@@ -1,22 +1,16 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
 public abstract class PlaceableElement : Element, IPlaceable
 {
-    [SerializeField] private Animator sizeAnimator;
     private bool _isVisible = true;
-
-    private void ChangeState()
-    {
-        sizeAnimator.SetTrigger("ChangeState");
-    }
 
     public void Hide()
     {
         if (!_isVisible) return;
         _isVisible = false;
-        ChangeState();
+        transform.DOScale(0f, 0.5f);
         UpdateChannels(new List<int> {0,0,0}, new List<int> {0,0,0});
     }
 
@@ -24,7 +18,7 @@ public abstract class PlaceableElement : Element, IPlaceable
     {
         if (_isVisible) return;
         _isVisible = true;
-        ChangeState();
+        transform.DOScale(1f, 0.5f);
     }
 
     public bool IsVisible()

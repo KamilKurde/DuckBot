@@ -9,9 +9,15 @@ public class AudioControlls : MonoBehaviour
 
     private void Start()
     {
+        LoadSettings();
+    }
+
+    private void LoadSettings()
+    {
         masterVolume.SetValueWithoutNotify(GameSave.AudioVolume);
         musicVolume.SetValueWithoutNotify(GameSave.MusicVolume);
         soundsVolume.SetValueWithoutNotify(GameSave.SfxVolume);
+        GameSave.LoadAudioSettings();
     }
 
     public void SetMasterVolume(float value)
