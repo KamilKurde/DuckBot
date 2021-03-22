@@ -66,11 +66,12 @@ public class UiManager : UI
         }
     }
 
-    public void EndLevel()
+    private void EndLevel()
     {
         if (SceneManager.GetActiveScene().buildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
         {
             LoadMenu();
+            return;
         }
         LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
