@@ -124,9 +124,9 @@ MonoBehaviour:
   voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
   activatedMaterial: {fileID: 8339514984900967656, guid: e45ef4b8fa0fa2849a6db2ebe28de170, type: 3}
   deactivatedMaterial: {fileID: -5595750480765293007, guid: e45ef4b8fa0fa2849a6db2ebe28de170, type: 3}
-  inputChannel1: 0
-  inputChannel2: 0
-  outputChannel: 0
+  inputChannel1: -10
+  inputChannel2: -11
+  outputChannel: -13
   mode: 0
 --- !u!1001 &3691800677240904490
 PrefabInstance:

@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
 {
+    [SerializeField] private bool isActive = false;
     [Header("Inputs")]
-    [SerializeField] private int inputChannel = 0;
+    [SerializeField] public int inputChannel = -10;
     [Header("Outputs")]
-    [SerializeField] private int outputChannel = 0;
-    private bool _isActive = false;
+    [SerializeField] public int outputChannel = -13;
     private AudioSource _switchSound;
     [SerializeField] private Material lightMaterial;
     [SerializeField] private Material darkMaterial;
@@ -44,31 +44,34 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     private void Start()
     {
         _switchSound = GetComponent<AudioSource>();
-        SetLight(false);
+        SetLight(isActive);
         GameManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 
     protected override void UpdateChannels(List<int> inputChannels, List<int> outputChannels)
     {
-        ChangeReceiverChannel(ref inputChannel, inputChannels[0]);
-        ChangeSourceChannel(ref outputChannel, outputChannels[0]);
+        isActive = false;
+        SetLight(isActive);
+        GameManager.RemoveAllReferencesTo(this);
+        inputChannel = inputChannels[0];
+        outputChannel = outputChannels[0];
+        GameManager.GetChannel(inputChannel).AddVoltageListener(this);
     }
 
     public void Interact()
     {
-        _isActive = !_isActive;
-        if (_isActive)
+        _switchSound.Play();
+        isActive = !isActive;
+        if (isActive)
         {
             GameManager.GetChannel(outputChannel).AddVoltageSource(this);
             ChangeListenerToReceiver(inputChannel);
-            _switchSound.Play();
         }
         else
         {
             GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
             ChangeReceiverToListner(inputChannel);
-            _switchSound.Play();
         }
-        SetLight(_isActive);
+        SetLight(isActive);
     }
 }

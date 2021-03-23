@@ -32,7 +32,7 @@ public class CableEndpoint : Element, IReceiver
     {
         GameManager.AddEndpoint(this);
         LightInit();
-        textMeshPro.text = requiredVoltage.ToString("F1", CultureInfo.InvariantCulture);
+        textMeshPro.text = requiredVoltage.ToString("F1", CultureInfo.InvariantCulture) + " V";
         GameManager.GetChannel(inputChannel).AddVoltageReceiver(this);
     }
 }

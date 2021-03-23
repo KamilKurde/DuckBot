@@ -4,9 +4,9 @@ using UnityEngine;
 public class Button : PlaceableElement, ISource, IReceiver
 {
     [Header("Inputs")]
-    [SerializeField] private int inputChannel;
+    [SerializeField] private int inputChannel = -10;
     [Header("Outputs")]
-    [SerializeField] private int outputChannel;
+    [SerializeField] private int outputChannel = -13;
     private AudioSource button_sound;
 
     private float _voltage = 0f;

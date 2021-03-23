@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
-  inputChannel: 0
-  outputChannel: 0
+  inputChannel: -10
+  outputChannel: -13
   lightMaterial: {fileID: 2100000, guid: 3372fcc5fcfefe84e87fa90ad42e0628, type: 2}
   darkMaterial: {fileID: 2100000, guid: f25054f735db6374b9e3c44a165a22d0, type: 2}
 --- !u!1001 &4722062476732539156

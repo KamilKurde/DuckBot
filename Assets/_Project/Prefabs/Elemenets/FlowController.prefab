@@ -137,9 +137,9 @@ MonoBehaviour:
   voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
   firstChannelIsActive: 1
   animator: {fileID: 7601725764568886110}
-  inputChannel1: 0
-  inputChannel2: 0
-  outputChannel: 0
+  inputChannel1: -10
+  inputChannel2: -11
+  outputChannel: -13
 --- !u!95 &7601725764568886110
 Animator:
   serializedVersion: 3

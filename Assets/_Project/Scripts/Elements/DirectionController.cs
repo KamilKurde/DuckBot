@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class DirectionController : PlaceableElement, IInteractable, IReceiver, ISource
 {
-    [SerializeField] private int channel1 = 0;
-    [SerializeField] private int channel2 = 0;
+    [SerializeField] private int channel1 = -10;
+    [SerializeField] private int channel2 = -13;
     [SerializeField] private bool firstChannelIsInput = true;
     private float _voltage = 0f;
     void Start()

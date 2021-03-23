@@ -8,10 +8,10 @@ public class FlowController : PlaceableElement, IReceiver, ISource, IInteractabl
     [SerializeField] private Animator animator;
     
     [Header("Inputs")]
-    [SerializeField] private int inputChannel1;
-    [SerializeField] private int inputChannel2;
+    [SerializeField] private int inputChannel1 = -10;
+    [SerializeField] private int inputChannel2 = -11;
     [Header("Outputs")]
-    [SerializeField] private int outputChannel;
+    [SerializeField] private int outputChannel = -14;
 
     private AudioSource flow_sound;
 

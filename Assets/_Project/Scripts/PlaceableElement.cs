@@ -11,7 +11,7 @@ public abstract class PlaceableElement : Element, IPlaceable
         if (!_isVisible) return;
         _isVisible = false;
         transform.DOScale(0f, 0.5f);
-        UpdateChannels(new List<int> {0,0,0}, new List<int> {0,0,0});
+        UpdateChannels(new List<int> {-10,-11,-12}, new List<int> {-13,-14,-15});
     }
 
     public void Show()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
   voltageText: {fileID: 7190640605067414737}
-  inputChannel: 0
+  inputChannel: -10
 --- !u!1 &6072318749009532937
 GameObject:
   m_ObjectHideFlags: 0

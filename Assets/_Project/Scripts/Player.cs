@@ -168,6 +168,15 @@ public class Player : MonoBehaviour
         SetPauseState(isPaused);
     }
 
+    public void OnContinueEnter(InputAction.CallbackContext context)
+    {
+        if (!context.started)
+        {
+            return;
+        }
+        GameManager.uiManager.OnContinueButtonClicked();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (levelFinished)

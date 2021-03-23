@@ -3,7 +3,10 @@ guid: 3b0edd4980b37fb47b45dedaa9c8d507
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
+  - activatedMaterial: {instanceID: 0}
+  - deactivatedMaterial: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -12,10 +12,10 @@ public class Manipulator : PlaceableElement, IReceiver, ISource, IInteractable
     [SerializeField] private Material activatedMaterial;
     [SerializeField] private Material deactivatedMaterial;
     [Header("Inputs")]
-    [SerializeField] private int inputChannel1;
-    [SerializeField] private int inputChannel2;
+    [SerializeField] private int inputChannel1 = -10;
+    [SerializeField] private int inputChannel2 = -11;
     [Header("Outputs")]
-    [SerializeField] private int outputChannel;
+    [SerializeField] private int outputChannel = -13;
     [SerializeField] private ManipulatorMode mode = ManipulatorMode.Add;
     private AudioSource _switchSound;
 

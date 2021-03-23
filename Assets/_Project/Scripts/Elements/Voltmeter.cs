@@ -7,7 +7,7 @@ public class Voltmeter : PlaceableElement, IListener
 {
     [SerializeField] private TextMeshPro voltageText;
     [Header("Inputs")]
-    [SerializeField] private int inputChannel;
+    [SerializeField] private int inputChannel = -10;
 
     public void SetInput(float voltage, int id)
     {
