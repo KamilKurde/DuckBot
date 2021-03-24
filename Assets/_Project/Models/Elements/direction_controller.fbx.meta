@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: c1ac7e47ec3285441a44e9c5d2f58318
+guid: 009517f389bcbe04b83e225da303aefd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: body_tile
-    second: {fileID: 2100000, guid: ea5fb0a6440344a45a414bcbde88a875, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: body_tile_spicy
-    second: {fileID: 2100000, guid: ea5fb0a6440344a45a414bcbde88a875, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: light_tile
-    second: {fileID: 2100000, guid: 988d3a913c635a145a06e328560a34d0, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

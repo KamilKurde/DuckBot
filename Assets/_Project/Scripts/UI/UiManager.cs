@@ -28,7 +28,7 @@ public class UiManager : UI
         interactText.enabled = false;
         pickUpText.enabled = false;
         var scene = SceneManager.GetActiveScene();
-        levelText.text = "Stage " + scene.path[29] + ": " + scene.name;
+        levelText.text = scene.name + " ( Stage " + scene.path[29] + " )";
     }
 
     private void Update()

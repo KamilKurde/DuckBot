@@ -6,7 +6,7 @@ public abstract class Element : MonoBehaviour
 {
     internal float shortAnimTime = GameManager.shortAnimationLenght;
     internal float mediumAnimTime = GameManager.mediumAnimationLenght;
-    
+
     [SerializeField] private VoltageDataValueList voltageList;
 
     // Component that's null when object doesn't have Light Component

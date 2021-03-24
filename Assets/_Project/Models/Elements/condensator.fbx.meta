@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: 06c22938e549e394d8dba7984b1bd186
+guid: 25f2628bcae27a74c9319daf75da3124
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: way_indicator_body
-    second: {fileID: 3718707368064353531, guid: d5aafcef94feef14c9099581a6a80e8b, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0

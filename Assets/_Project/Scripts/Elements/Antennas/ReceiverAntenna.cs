@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ReceiverAntenna : Element, IReceiver, ISource, IInteractable
 {
+    [SerializeField] private ReceiverAntennaSatelite _satelite;
     [SerializeField] private TextMeshPro channelInfoText;
 
     [Header("Outputs")] 
@@ -35,6 +36,7 @@ public class ReceiverAntenna : Element, IReceiver, ISource, IInteractable
     {
         _voltage = voltage;
         GameManager.GetChannel(outputChannel).UpdateVoltage();
+        _satelite.voltage = voltage;
     }
 
     public float GetOutput(int id)
