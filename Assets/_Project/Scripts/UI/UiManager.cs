@@ -27,8 +27,7 @@ public class UiManager : UI
         GameManager.uiManager = this;
         interactText.enabled = false;
         pickUpText.enabled = false;
-        var scene = SceneManager.GetActiveScene();
-        levelText.text = scene.name + " ( Stage " + scene.path[29] + " )";
+        levelText.text = SceneManager.GetActiveScene().name;
     }
 
     private void Update()

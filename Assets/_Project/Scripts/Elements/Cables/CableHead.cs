@@ -10,8 +10,8 @@ public class CableHead : Element, ISource
     [Tooltip("Index of material to change")]
     [SerializeField] private int tileRendererMaterialIndex;
     [Tooltip("Index of material in this object's renderer to take texture from")]
-    [SerializeField]
-    private int sourceMaterialIndex;
+    [SerializeField] private int sourceMaterialIndex;
+    
     public float GetOutput(int id)
     {
         return voltage;
