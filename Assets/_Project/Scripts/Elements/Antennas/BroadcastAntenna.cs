@@ -44,10 +44,11 @@ public class BroadcastAntenna : Element, IReceiver, ISource, IInteractable
 
     public void Interact()
     {
-        GameManager.GetChannel(-currentChannel).RemoveVoltageSource(this);
+        var oldChannel = -currentChannel;
         IncrementChannel();
-        channelInfoText.text = currentChannel.ToString();
         GameManager.GetChannel(-currentChannel).AddVoltageSource(this);
+        GameManager.GetChannel(oldChannel).RemoveVoltageSource(this);
+        channelInfoText.text = currentChannel.ToString();
         radio_sound.Play();
     }
 }

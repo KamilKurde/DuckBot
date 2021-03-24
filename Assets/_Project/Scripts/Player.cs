@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -17,6 +18,8 @@ public enum EqState
 
 public class Player : MonoBehaviour
 {
+    internal float shortAnimTime = GameManager.shortAnimationLenght;
+    internal float mediumAnimTime = GameManager.mediumAnimationLenght;
     
     [SerializeField, Range(0.1f, 10f)] private float speed;
     
@@ -45,6 +48,11 @@ public class Player : MonoBehaviour
 
     [HideInInspector] public bool levelFinished = false;
 
+    private void Awake()
+    {
+        GameManager.sceneStartTime = Time.time;
+    }
+
     private void Start()
     {
         GameManager.player = this;
@@ -53,7 +61,6 @@ public class Player : MonoBehaviour
         {
             GameSave.CurrentLevelId = SceneManager.GetActiveScene().buildIndex;
         }
-
         audioSource.volume = 0f;
     }
 
@@ -150,8 +157,8 @@ public class Player : MonoBehaviour
     public void SetPauseState(bool state)
     {
         isPaused = state;
-        GameManager.uiManager.uiGroup.alpha = isPaused ? 0f : 1f;
-        GameManager.uiManager.pauseGroup.alpha = isPaused ? 1f : 0f;
+        GameManager.uiManager.uiGroup.DOFade(isPaused ? 0f : 1f, shortAnimTime).SetUpdate(true);
+        GameManager.uiManager.pauseGroup.DOFade(isPaused ? 1f : 0f, shortAnimTime).SetUpdate(true);
         GameManager.uiManager.pauseGroup.interactable = isPaused;
         GameManager.uiManager.pauseGroup.blocksRaycasts = isPaused;
         audioSource.enabled = !state;

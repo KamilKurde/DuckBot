@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
+    internal float shortAnimTime = GameManager.shortAnimationLenght;
+    internal float mediumAnimTime = GameManager.mediumAnimationLenght;
     [SerializeField] private CanvasGroup confirmation;
     private GameObject _musicManager;
 
@@ -15,7 +17,7 @@ public class Settings : MonoBehaviour
 
     public void OnResetButtonClicked()
     {
-        confirmation.DOFade(1f, 0.5f);
+        confirmation.DOFade(1f, shortAnimTime);
         confirmation.interactable = true;
         confirmation.blocksRaycasts = true;
     }
@@ -37,7 +39,7 @@ public class Settings : MonoBehaviour
 
     public void ChangeVisibilityTo(bool state)
     {
-        _canvasGroup.alpha = state ? 1f : 0f;
+        _canvasGroup.DOFade(state ? 1f : 0f, shortAnimTime).SetUpdate(true);
         _canvasGroup.interactable = state;
         _canvasGroup.blocksRaycasts = state;
         
@@ -46,7 +48,7 @@ public class Settings : MonoBehaviour
             return;
         }
         
-        GameManager.uiManager.pauseGroup.alpha = state ? 0f : 1f;
+        GameManager.uiManager.pauseGroup.DOFade(state ? 0f : 1f, shortAnimTime).SetUpdate(true);
         GameManager.uiManager.pauseGroup.interactable = !state;
         GameManager.uiManager.pauseGroup.blocksRaycasts = !state;
     }

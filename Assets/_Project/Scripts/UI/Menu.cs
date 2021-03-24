@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Menu : UI
@@ -24,7 +25,7 @@ public class Menu : UI
     public void OnSelectLevelButtonClicked()
     {
         var isVisible = selectLevelGroup.interactable;
-        selectLevelGroup.alpha = isVisible ? 0f : 1f;
+        selectLevelGroup.DOFade(isVisible ? 0f : 1f, 0.5f);
         selectLevelGroup.interactable = !isVisible;
         selectLevelGroup.blocksRaycasts = !isVisible;
     }

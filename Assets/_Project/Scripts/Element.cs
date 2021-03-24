@@ -1,9 +1,12 @@
-using System;
+using DG.Tweening;
 using UnityAtoms;
 using UnityEngine;
 
 public abstract class Element : MonoBehaviour
 {
+    internal float shortAnimTime = GameManager.shortAnimationLenght;
+    internal float mediumAnimTime = GameManager.mediumAnimationLenght;
+    
     [SerializeField] private VoltageDataValueList voltageList;
 
     // Component that's null when object doesn't have Light Component
@@ -61,8 +64,19 @@ public abstract class Element : MonoBehaviour
 
         foreach (var index in indexes)
         {
-            materials[index].color = color;
-            materials[index].SetColor("_EmissionColor", color);
+            // Check for time since scene's start
+            if (Time.time - GameManager.sceneStartTime > 1f)
+            {
+                // If scene started a while ago change color with animation
+                materials[index].DOColor(color, shortAnimTime);
+                materials[index].DOColor(color, "_EmissionColor", shortAnimTime);
+            }
+            else
+            {
+                // If scene just started then change color without animation
+                materials[index].color = color;
+                materials[index].SetColor("_EmissionColor", color);
+            }
         }
 
         GetComponent<Renderer>().materials = materials;

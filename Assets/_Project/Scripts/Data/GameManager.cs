@@ -19,6 +19,9 @@ public static class GameManager
     public static UiManager uiManager;
     public static Player player;
     public static AudioMixer audioMixer;
+    public static float shortAnimationLenght = 0.5f;
+    public static float mediumAnimationLenght = 1f;
+    public static float sceneStartTime;
 
     private static float LinearToDecibel(float linear)
     {
