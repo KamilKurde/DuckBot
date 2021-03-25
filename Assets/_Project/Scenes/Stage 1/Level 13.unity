@@ -3744,6 +3744,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 75e35b1c608f2ae4093739afe158d3bd, type: 2}
+    - target: {fileID: 3772978377206331896, guid: 70567734542289d41a89f73dadfaedc9, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -7513297493162946847, guid: 5390f61396bf3914da4560bd8809342e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70567734542289d41a89f73dadfaedc9, type: 3}
 --- !u!4 &237538680 stripped
@@ -6332,6 +6336,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1862984810}
     m_Modifications:
+    - target: {fileID: 5411657452084374344, guid: a60209353977033409c7dd2ddafeeff8, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8646378013109976663, guid: a60209353977033409c7dd2ddafeeff8, type: 3}
       propertyPath: m_Name
       value: tile_floor (43)

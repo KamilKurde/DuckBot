@@ -19,13 +19,14 @@ public class UI : MonoBehaviour
 
     internal void Start()
     {
+        Time.timeScale = 1f;
         fadeImage.DOFade(0f, opacityChangeTime);
         GameSave.LoadAudioSettings();
     }
 
     internal void LoadScene(int sceneIndex)
     {
-        fadeImage.DOFade(1f, opacityChangeTime).OnComplete(() =>
+        fadeImage.DOFade(1f, opacityChangeTime).SetUpdate(true).OnComplete(() =>
         {
             SceneManager.LoadScene(sceneIndex);
         });

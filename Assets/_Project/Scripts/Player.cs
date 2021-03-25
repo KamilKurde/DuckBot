@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,6 +21,9 @@ public class Player : MonoBehaviour
 {
     internal float shortAnimTime = GameManager.shortAnimationLenght;
     internal float mediumAnimTime = GameManager.mediumAnimationLenght;
+
+    [SerializeField] private ParticleSystem _particleSystem;
+    private bool _particlesWerePlayed = false;
     
     [SerializeField, Range(0.1f, 10f)] private float speed;
     
@@ -57,10 +61,6 @@ public class Player : MonoBehaviour
     {
         GameManager.player = this;
         controller.Move(Vector3.up * 8f);
-        if (SceneManager.GetActiveScene().buildIndex > GameSave.CurrentLevelId)
-        {
-            GameSave.CurrentLevelId = SceneManager.GetActiveScene().buildIndex;
-        }
         audioSource.volume = 0f;
     }
 
@@ -245,6 +245,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator StopParticles()
+    {
+        yield return 2f;
+        _particleSystem.Stop();
+    }
+
     private void Move()
     {
         // New rotation for the character
@@ -267,6 +273,12 @@ public class Player : MonoBehaviour
 
         if (controller.isGrounded && playerVelocity.y < 0)
         {
+            if (!_particlesWerePlayed)
+            {
+                _particlesWerePlayed = true;
+                _particleSystem.Play();
+                StartCoroutine(StopParticles());
+            }
             playerVelocity.y = 0f;
             animator.enabled = false;
         }

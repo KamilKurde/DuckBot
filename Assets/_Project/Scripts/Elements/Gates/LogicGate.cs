@@ -40,7 +40,7 @@ public class LogicGate : Element, IInteractable, IReceiver, ISource
         var logicFullfiled = false;
         if (mode == SimpleLogicModes.And)
         {
-            materials[0] = andMaterial;
+            materials[1] = andMaterial;
             if (voltage1 && voltage2)
             {
                 logicFullfiled = true;
@@ -48,7 +48,7 @@ public class LogicGate : Element, IInteractable, IReceiver, ISource
         }
         else if (mode == SimpleLogicModes.Or)
         {
-            materials[0] = orMaterial;
+            materials[1] = orMaterial;
             if (voltage1 || voltage2)
             {
                 logicFullfiled = true;
@@ -58,9 +58,10 @@ public class LogicGate : Element, IInteractable, IReceiver, ISource
 
         if (_inputVoltage1 == 0f && _inputVoltage2 == 0f)
         {
-            materials[0] = noPowerMaterial;
+            materials[1] = noPowerMaterial;
         }
         GetComponent<Renderer>().materials = materials;
+        UpdateColor(2, _outputVoltage);
         GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 

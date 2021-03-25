@@ -17,7 +17,7 @@ public class Settings : MonoBehaviour
 
     public void OnResetButtonClicked()
     {
-        confirmation.DOFade(1f, shortAnimTime);
+        confirmation.DOFade(1f, shortAnimTime).SetUpdate(true);
         confirmation.interactable = true;
         confirmation.blocksRaycasts = true;
     }
@@ -27,7 +27,10 @@ public class Settings : MonoBehaviour
         if (GameManager.uiManager != null)
         {
             _musicManager = GameObject.Find("MusicManager");
-            _musicManager.SetActive(false);
+            if (_musicManager != null)
+            {
+                _musicManager.SetActive(false);
+            }
             GameSave.CurrentLevelId = 1;
             GameManager.uiManager.LoadMenu();
         }
@@ -42,6 +45,10 @@ public class Settings : MonoBehaviour
         _canvasGroup.DOFade(state ? 1f : 0f, shortAnimTime).SetUpdate(true);
         _canvasGroup.interactable = state;
         _canvasGroup.blocksRaycasts = state;
+
+        confirmation.alpha = 0f;
+        confirmation.interactable = false;
+        confirmation.blocksRaycasts = false;
         
         if (GameManager.uiManager == null)
         {

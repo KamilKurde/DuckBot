@@ -14,6 +14,13 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     
     private float _voltage = 0f;
 
+    // Start is called before the first frame update
+    private void Start()
+    {
+        _switchSound = GetComponent<AudioSource>();
+        SetLogic(isActive);
+    }
+
     public float GetOutput(int id) { return _voltage; }
 
     private void SetLight(bool state)
@@ -40,12 +47,19 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
         GameManager.GetChannel(outputChannel).UpdateVoltage();
     }
 
-    // Start is called before the first frame update
-    private void Start()
+    private void SetLogic(bool state)
     {
-        _switchSound = GetComponent<AudioSource>();
-        SetLight(isActive);
-        GameManager.GetChannel(inputChannel).AddVoltageListener(this);
+        if (state)
+        {
+            GameManager.GetChannel(outputChannel).AddVoltageSource(this);
+            ChangeListenerToReceiver(inputChannel);
+        }
+        else
+        {
+            GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
+            ChangeReceiverToListner(inputChannel);
+        }
+        SetLight(state);
     }
 
     protected override void UpdateChannels(List<int> inputChannels, List<int> outputChannels)
@@ -62,16 +76,6 @@ public class Switch : PlaceableElement, ISource, IReceiver, IInteractable
     {
         _switchSound.Play();
         isActive = !isActive;
-        if (isActive)
-        {
-            GameManager.GetChannel(outputChannel).AddVoltageSource(this);
-            ChangeListenerToReceiver(inputChannel);
-        }
-        else
-        {
-            GameManager.GetChannel(outputChannel).RemoveVoltageSource(this);
-            ChangeReceiverToListner(inputChannel);
-        }
-        SetLight(isActive);
+        SetLogic(isActive);
     }
 }

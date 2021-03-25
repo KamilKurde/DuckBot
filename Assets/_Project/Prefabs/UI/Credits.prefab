@@ -141,7 +141,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "GAME DEVELOPERS:\n\n\n\nKamil B\u0105k\n\nJakub Gajowiecki\n\nKacper Szewczyk"
+  m_text: "GAME DEVELOPERS:\n\n\n\nKamil B\u0105k\n\nJakub Gajowiecki\n\nKacper Szewczyk\n\n\n\nCOORDINATOR:\n\n\u0141ukasz
+    Smalec\n\n\n\nDUCKBOT 2021\nV1.0\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfca9b31540e04d44ba0111828e93fb0, type: 2}
   m_sharedMaterial: {fileID: 3438493164898284132, guid: dfca9b31540e04d44ba0111828e93fb0, type: 2}
