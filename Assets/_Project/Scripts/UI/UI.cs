@@ -14,7 +14,7 @@ public class UI : MonoBehaviour
     private void OnEnable()
     {
         GameManager.audioMixer = GetComponent<AudioSource>().outputAudioMixerGroup.audioMixer;
-        DOTween.SetTweensCapacity(500, 50);
+        DOTween.SetTweensCapacity(1250, 50);
     }
 
     internal void Start()

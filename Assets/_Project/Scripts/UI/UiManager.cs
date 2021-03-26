@@ -28,6 +28,8 @@ public class UiManager : UI
     [Header("Scripts")]
     [SerializeField] private FullScreenInfo endingScript;
 
+    [SerializeField] public Settings settingsScript;
+
     private int _currentBuildIndex;
 
     private void Awake()

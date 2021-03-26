@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -156,6 +154,10 @@ public class Player : MonoBehaviour
 
     public void SetPauseState(bool state)
     {
+        if (!state)
+        {
+            GameManager.uiManager.settingsScript.ChangeVisibilityTo(false);
+        }
         isPaused = state;
         GameManager.uiManager.uiGroup.DOFade(isPaused ? 0f : 1f, shortAnimTime).SetUpdate(true);
         GameManager.uiManager.pauseGroup.DOFade(isPaused ? 1f : 0f, shortAnimTime).SetUpdate(true);
@@ -190,13 +192,13 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        var collidedInteractable = other.gameObject.GetComponent<IInteractable>();
+        var collidedInteractable = other.GetComponent<IInteractable>();
         if (collidedInteractable != null)
         {
             _interactable = collidedInteractable;
         }
 
-        var collidedTile = other.gameObject.GetComponent<PlaceTile>();
+        var collidedTile = other.GetComponent<PlaceTile>();
         if (collidedTile != null)
         {
             placeTile = collidedTile;
@@ -210,12 +212,12 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        if (other.gameObject.GetComponent<IInteractable>() == _interactable)
+        if (other.GetComponent<IInteractable>() == _interactable)
         {
             _interactable = null;
         }
 
-        if (other.gameObject.GetComponent<PlaceTile>() == placeTile)
+        if (other.GetComponent<PlaceTile>() == placeTile)
         {
             placeTile = null;
         }

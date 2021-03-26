@@ -164,7 +164,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7231188985672487722, guid: 6172306ba791c1546aefcc0ad6855985, type: 2}
-  m_audioClip: {fileID: 8300000, guid: ab33339a0ce5f394b83d2e74e51c73dd, type: 3}
+  m_audioClip: {fileID: 8300000, guid: eb4ef285c6e4976458a2604c0fa45425, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 1
-  m_CellSize: {x: 256, y: 72}
+  m_CellSize: {x: 192, y: 72}
   m_Spacing: {x: 64, y: 32}
   m_Constraint: 0
   m_ConstraintCount: 2
