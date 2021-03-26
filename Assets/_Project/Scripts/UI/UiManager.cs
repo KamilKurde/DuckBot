@@ -25,8 +25,10 @@ public class UiManager : UI
     [SerializeField] private string eqFull;
     [SerializeField] private string levelFinished;
     [SerializeField] private string gameFinished;
+    [Header("Scripts")]
+    [SerializeField] private FullScreenInfo endingScript;
 
-    private int currentBuildIndex;
+    private int _currentBuildIndex;
 
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class UiManager : UI
         interactText.enabled = false;
         pickUpText.enabled = false;
         levelText.text = SceneManager.GetActiveScene().name;
-        currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        _currentBuildIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void Update()
@@ -73,7 +75,7 @@ public class UiManager : UI
 
     private void EndLevel()
     {
-        if (currentBuildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
+        if (_currentBuildIndex + 1 >= SceneManager.sceneCountInBuildSettings)
         {
             LoadMenu();
             return;
@@ -104,11 +106,11 @@ public class UiManager : UI
     public void DisplayLevelEndedGroup()
     {
         levelFinishedText.text = levelFinished;
-        if (currentBuildIndex + 1 > GameSave.CurrentLevelId)
+        if (_currentBuildIndex + 1 > GameSave.CurrentLevelId)
         {
-            if (currentBuildIndex + 1 < SceneManager.sceneCountInBuildSettings)
+            if (_currentBuildIndex + 1 < SceneManager.sceneCountInBuildSettings)
             {
-                GameSave.CurrentLevelId = currentBuildIndex + 1;
+                GameSave.CurrentLevelId = _currentBuildIndex + 1;
             }
             else
             {
@@ -116,6 +118,7 @@ public class UiManager : UI
                 contineButtonGroup.alpha = 0f;
                 contineButtonGroup.interactable = false;
                 contineButtonGroup.blocksRaycasts = false;
+                endingScript.Show();
             }
         }
         pauseGroup.DOFade(0f, opacityChangeTime);

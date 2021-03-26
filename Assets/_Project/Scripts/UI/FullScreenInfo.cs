@@ -12,14 +12,14 @@ public class FullScreenInfo : MonoBehaviour
 
     public void Show()
     {
-        _canvasGroup.DOFade(1f, 0.5f);
+        _canvasGroup.DOFade(1f, 0.5f).SetUpdate(true);
         _canvasGroup.interactable = true;
         _canvasGroup.blocksRaycasts = true;
     }
 
     public void Close()
     {
-        _canvasGroup.DOFade(0f, 0.5f);
+        _canvasGroup.DOFade(0f, 0.5f).SetUpdate(true);
         _canvasGroup.interactable = false;
         _canvasGroup.blocksRaycasts = false;
     }
