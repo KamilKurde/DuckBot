@@ -134,6 +134,9 @@ public class UiManager : UI
 
     public void OnContinueButtonClicked()
     {
-        EndLevel();
+        if (GameManager.player.levelFinished)
+        {
+            EndLevel();
+        }
     }
 }
