@@ -141,10 +141,8 @@ public class Player : MonoBehaviour
             placeTile.placeable = null;
             GameManager.placeable.Hide();
             UpdateEqState();
-            return;
         }
-
-        if (GameManager.placeable != null && !placeTile.HasPlaceable)
+        else if (GameManager.placeable != null && !placeTile.HasPlaceable)
         {
             placeTile.SetPlaceable(GameManager.placeable);
             GameManager.placeable = null;

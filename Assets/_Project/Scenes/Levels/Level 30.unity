@@ -3274,6 +3274,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5585039959726270766, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585039959726270766, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585039959726270766, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5598210847248137697, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -26859,7 +26871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6573422389669476612, guid: 4946f18d00ae640448408cca496f9067, type: 3}
       propertyPath: inputChannel
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6735307275815130888, guid: 4946f18d00ae640448408cca496f9067, type: 3}
       propertyPath: m_LocalScale.y

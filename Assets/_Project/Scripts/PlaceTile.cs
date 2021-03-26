@@ -22,9 +22,8 @@ public class PlaceTile : Element
 
     private void Start()
     {
-        if (_gameObject != null)
-        {
-            placeable = _gameObject.GetComponent<IPlaceable>();
-        }
+        if (_gameObject == null) return;
+        placeable = _gameObject.GetComponent<IPlaceable>();
+        _gameObject = null;
     }
 }
