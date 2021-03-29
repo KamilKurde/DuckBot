@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlaceTile : Element
 {
     [Header("Inputs")]
-    public List<int> _inputs = new List<int>();
+    public List<int> inputs = new List<int>();
     [Header("Outputs")] 
-    public List<int> _outputs = new List<int>();
+    public List<int> outputs = new List<int>();
 
     [SerializeField] private float rotation;
     [SerializeField] private GameObject _gameObject = null;
@@ -14,10 +14,10 @@ public class PlaceTile : Element
 
     public bool HasPlaceable => placeable != null;
     
-    public void SetPlaceable(IPlaceable placeable)
+    public void SetPlaceable(IPlaceable newPlaceable)
     {
-        this.placeable = placeable;
-        this.placeable.Place(transform.position,rotation, _inputs, _outputs);
+        placeable = newPlaceable;
+        placeable.Place(transform.position,rotation, inputs, outputs);
     }
 
     private void Start()

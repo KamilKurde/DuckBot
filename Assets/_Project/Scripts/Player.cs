@@ -38,15 +38,16 @@ public class Player : MonoBehaviour
     [SerializeField, Range(1f, 50f)] private float rotationSpeed = 20f;
     [SerializeField, Range(0.01f, 1f)] private float swingPower = 0.3f;
     public EqState state = EqState.NoEq;
+    private IPlaceable _placeable;
     private IInteractable _interactable = null;
-    private PlaceTile placeTile = null;
+    private PlaceTile _placeTile = null;
 
     private Vector3 _movementDirection = Vector3.zero;
     // Variable ot keep last direction (for use when player is no longer moving)
     private Vector3 _lastMovementDirection = Vector3.forward;
-    private Vector3 playerVelocity;
+    private Vector3 _playerVelocity;
 
-    private bool isPaused = false;
+    private bool _isPaused = false;
 
     [HideInInspector] public bool levelFinished = false;
 
@@ -91,25 +92,25 @@ public class Player : MonoBehaviour
 
     private void UpdateEqState()
     {
-        if (placeTile == null)
+        if (_placeTile == null)
         {
             state = EqState.NoTile;
             return;
         }
         
-        if (GameManager.placeable != null && !placeTile.HasPlaceable)
+        if (_placeable != null && !_placeTile.HasPlaceable)
         {
             state = EqState.CanPlace;
             return;
         }
 
-        if (GameManager.placeable == null && placeTile.HasPlaceable)
+        if (_placeable == null && _placeTile.HasPlaceable)
         {
             state = EqState.CanTake;
             return;
         }
 
-        if (GameManager.placeable != null && placeTile.HasPlaceable)
+        if (_placeable != null && _placeTile.HasPlaceable)
         {
             state = EqState.CantPlace;
             return;
@@ -118,34 +119,34 @@ public class Player : MonoBehaviour
 
     public void OnPlaceInput(InputAction.CallbackContext context)
     {
-        if (!context.started || placeTile == null || levelFinished)
+        if (!context.started || _placeTile == null || levelFinished)
         {
             return;
         }
 
         // If both player and tile don't have placeable
-        if (GameManager.placeable == null && !placeTile.HasPlaceable)
+        if (_placeable == null && !_placeTile.HasPlaceable)
         {
             return;
         }
 
         // if both player and tile do have placeable
-        if (GameManager.placeable != null && placeTile.HasPlaceable)
+        if (_placeable != null && _placeTile.HasPlaceable)
         {
             return;
         }
 
-        if (GameManager.placeable == null && placeTile.HasPlaceable)
+        if (_placeable == null && _placeTile.HasPlaceable)
         {
-            GameManager.placeable = placeTile.placeable;
-            placeTile.placeable = null;
-            GameManager.placeable.Hide();
+            _placeable = _placeTile.placeable;
+            _placeTile.placeable = null;
+            _placeable.Hide();
             UpdateEqState();
         }
-        else if (GameManager.placeable != null && !placeTile.HasPlaceable)
+        else if (_placeable != null && !_placeTile.HasPlaceable)
         {
-            placeTile.SetPlaceable(GameManager.placeable);
-            GameManager.placeable = null;
+            _placeTile.SetPlaceable(_placeable);
+            _placeable = null;
             UpdateEqState();
         }
     }
@@ -156,13 +157,13 @@ public class Player : MonoBehaviour
         {
             GameManager.uiManager.settingsScript.ChangeVisibilityTo(false);
         }
-        isPaused = state;
-        GameManager.uiManager.uiGroup.DOFade(isPaused ? 0f : 1f, shortAnimTime).SetUpdate(true);
-        GameManager.uiManager.pauseGroup.DOFade(isPaused ? 1f : 0f, shortAnimTime).SetUpdate(true);
-        GameManager.uiManager.pauseGroup.interactable = isPaused;
-        GameManager.uiManager.pauseGroup.blocksRaycasts = isPaused;
+        _isPaused = state;
+        GameManager.uiManager.uiGroup.DOFade(_isPaused ? 0f : 1f, shortAnimTime).SetUpdate(true);
+        GameManager.uiManager.pauseGroup.DOFade(_isPaused ? 1f : 0f, shortAnimTime).SetUpdate(true);
+        GameManager.uiManager.pauseGroup.interactable = _isPaused;
+        GameManager.uiManager.pauseGroup.blocksRaycasts = _isPaused;
         audioSource.enabled = !state;
-        Time.timeScale = isPaused ? 0f : 1f;
+        Time.timeScale = _isPaused ? 0f : 1f;
     }
 
     public void OnPauseEnter(InputAction.CallbackContext context)
@@ -171,8 +172,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        isPaused = !isPaused;
-        SetPauseState(isPaused);
+        _isPaused = !_isPaused;
+        SetPauseState(_isPaused);
     }
 
     public void OnContinueEnter(InputAction.CallbackContext context)
@@ -199,7 +200,7 @@ public class Player : MonoBehaviour
         var collidedTile = other.GetComponent<PlaceTile>();
         if (collidedTile != null)
         {
-            placeTile = collidedTile;
+            _placeTile = collidedTile;
         }
         UpdateEqState();
     }
@@ -215,9 +216,9 @@ public class Player : MonoBehaviour
             _interactable = null;
         }
 
-        if (other.GetComponent<PlaceTile>() == placeTile)
+        if (other.GetComponent<PlaceTile>() == _placeTile)
         {
-            placeTile = null;
+            _placeTile = null;
         }
         UpdateEqState();
     }
@@ -271,7 +272,7 @@ public class Player : MonoBehaviour
             _audioIsActive = false;
         }
 
-        if (controller.isGrounded && playerVelocity.y < 0)
+        if (controller.isGrounded && _playerVelocity.y < 0)
         {
             if (!_particlesWerePlayed)
             {
@@ -279,15 +280,15 @@ public class Player : MonoBehaviour
                 _particleSystem.Play();
                 StartCoroutine(StopParticles());
             }
-            playerVelocity.y = 0f;
+            _playerVelocity.y = 0f;
             animator.enabled = false;
         }
 
-        playerVelocity.y = Physics.gravity.y * Time.deltaTime;
+        _playerVelocity.y = Physics.gravity.y * Time.deltaTime;
 
         if (!controller.isGrounded)
         {
-            controller.Move(playerVelocity);
+            controller.Move(_playerVelocity);
         }
 
         // Apply rotation

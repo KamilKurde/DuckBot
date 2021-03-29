@@ -15,7 +15,6 @@ public static class GameManager
     // Dictionary that holds channels
     private static Dictionary<int, Channel> _channels = new Dictionary<int, Channel>();
     private static List<CableEndpoint> _endpoints = new List<CableEndpoint>();
-    public static IPlaceable placeable;
     public static UiManager uiManager;
     public static Player player;
     public static AudioMixer audioMixer;
@@ -110,7 +109,11 @@ public static class GameManager
             _endpoints.Remove(element as CableEndpoint);
         }
         var unusedChannelsKeys = new List<int>();
-        var channelsKeys = _channels.Keys.ToArray();
+        int[] channelsKeys;
+        lock (_channels)
+        {
+            channelsKeys = _channels.Keys.ToArray();
+        }
         foreach (var key in channelsKeys)
         {
             if (!_channels.ContainsKey(key))

@@ -39,8 +39,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   voltageList: {fileID: 11400000, guid: fd2bc609ea3826b448137d3d173072f2, type: 2}
-  _inputs: f6fffffff5fffffff4ffffff
-  _outputs: f3fffffff2fffffff1ffffff
+  inputs: f6fffffff5fffffff4ffffff
+  outputs: f3fffffff2fffffff1ffffff
   rotation: 0
   _gameObject: {fileID: 0}
 --- !u!1001 &322338533424402870

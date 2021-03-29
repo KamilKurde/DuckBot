@@ -28,8 +28,8 @@ public class UI : MonoBehaviour
     {
         fadeImage.DOFade(1f, opacityChangeTime).SetUpdate(true).OnComplete(() =>
         {
+            GameManager.Clear();
             SceneManager.LoadScene(sceneIndex);
         });
-        GameManager.Clear();
     }
 }
