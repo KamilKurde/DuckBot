@@ -142,7 +142,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "GAME DEVELOPERS:\n\n\n\nKamil B\u0105k\n\nJakub Gajowiecki\n\nKacper Szewczyk\n\n\n\nCOORDINATOR:\n\n\u0141ukasz
-    Smalec\n\n\n\nDUCKBOT 2021\nV1.0\n"
+    Smalec\n\n\n\nDUCKBOT 2021\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dfca9b31540e04d44ba0111828e93fb0, type: 2}
   m_sharedMaterial: {fileID: 3438493164898284132, guid: dfca9b31540e04d44ba0111828e93fb0, type: 2}
@@ -263,6 +263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af877b9e2ba8b7498a17a0caee8101d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appendVersionAtTheEnd: 0
+  TMP: {fileID: 0}
 --- !u!225 &8964116182503643135
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -287,6 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af877b9e2ba8b7498a17a0caee8101d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appendVersionAtTheEnd: 1
+  TMP: {fileID: 5945298786844237191}
 --- !u!1001 &652882244153060199
 PrefabInstance:
   m_ObjectHideFlags: 0
