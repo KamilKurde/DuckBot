@@ -683,7 +683,7 @@ PlayerSettings:
   cloudProjectId: 03a2f459-3629-4c58-b878-89c80d238208
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: unity-board-escape
+  projectName: DuckBot
   organizationId: kamilbak113
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

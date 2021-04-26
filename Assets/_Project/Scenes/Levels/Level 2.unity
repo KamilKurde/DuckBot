@@ -1122,6 +1122,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4545297108834086635, guid: c826433b5ee92b14888138bd0764eefe, type: 3}
+      propertyPath: inputs.Array.data[0]
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: -4545297108834086635, guid: c826433b5ee92b14888138bd0764eefe, type: 3}
       propertyPath: _inputs.Array.data[0]
       value: 11
       objectReference: {fileID: 0}
@@ -11707,6 +11711,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4545297108834086635, guid: c826433b5ee92b14888138bd0764eefe, type: 3}
+      propertyPath: inputs.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4545297108834086635, guid: c826433b5ee92b14888138bd0764eefe, type: 3}
       propertyPath: _inputs.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
@@ -15177,6 +15185,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -4545297108834086635, guid: c826433b5ee92b14888138bd0764eefe, type: 3}
+      propertyPath: inputs.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -4545297108834086635, guid: c826433b5ee92b14888138bd0764eefe, type: 3}
       propertyPath: _inputs.Array.data[0]
       value: 4
       objectReference: {fileID: 0}
@@ -15900,6 +15912,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4334955702638634796, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585039959726270766, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585039959726270766, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5585039959726270766, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
+      propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5861391646041881251, guid: 4b26a893485ee154b9154cc284a1a849, type: 3}
