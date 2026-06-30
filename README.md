@@ -1,7 +1,7 @@
 # DuckBot ⚡
 
 > An educational logic-puzzle game about electricity — route voltage from generators, through logic gates, to their correct end-points. Built in Unity by a 3-person team, with a stylized, colorful look inspired by Overcooked.
-![DuckBot screenshot](screenshots/duckbot.png)
+![DuckBot screenshot](duckbot.png)
 
 ▶️ **[Download & play](https://github.com/KamilKurde/DuckBot/releases)** — see the Releases page.
 
